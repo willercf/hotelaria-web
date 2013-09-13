@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" >
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/livraria</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">will</property>
+
+		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+    	<!-- O nome thread está relacionado com a classe org.hibernate.context.ThreadLocalSessionContext -->
+    	<property name="current_session_context_class">thread</property>
+    	<!-- Propriedade ativada para mostrar os códigos SQL -->
+    	<property name="hibernate.show_sql">true</property>
+    	<!-- Automaticamente valida ou exporta o schema ddl para o banco de dados.
+    	Parâmetros possiveis: validate | update | create | create-drop create: Permite a criação automática das tabelas-->
+    	<property name="hibernate.hbm2ddl.auto">create</property>
+
+    	<!-- Mapeamento dos Beans -->
+    	<mapping class="br.fpu.tcc.hotelaria.pojo.Cliente" />
+ 		<mapping class="br.fpu.tcc.hotelaria.pojo.Quarto" />
+ 		<mapping class="br.fpu.tcc.hotelaria.pojo.Funcionario" />
+ 		<mapping class="br.fpu.tcc.hotelaria.pojo.Checkin" />
+ 		<mapping class="br.fpu.tcc.hotelaria.pojo.Checkout" />
+ 		<mapping class="br.fpu.tcc.hotelaria.pojo.Reserva" />
+	</session-factory>
+</hibernate-configuration>
