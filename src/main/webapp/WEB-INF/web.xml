@@ -6,6 +6,14 @@
 
 	<display-name>Hotelaria</display-name>
 
+	<!-- Add Support for Spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value></param-value>
@@ -44,5 +52,7 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+
+
 
 </web-app>

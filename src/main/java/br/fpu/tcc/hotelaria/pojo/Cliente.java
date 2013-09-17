@@ -3,8 +3,10 @@ package br.fpu.tcc.hotelaria.pojo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,41 +15,35 @@ import javax.persistence.Table;
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 2919261778403558880L;
-	
-	private long id_cliente;
+
+	private Long id;
 	private String nome;
-	private String endereco;
-	private String cpf;
-	private String email;
+	private Endereco endereco;
 	private String telefone;
-	
+	private String cpfCnpj;
+	private String email;
+
 	public Cliente() {
-		
+
 	}
-	
-	public Cliente(long id_cliente, String nome, String endereco, String cpf,
-			String email, String telefone) {
+
+	public Cliente(Long id) {
 		super();
-		this.id_cliente = id_cliente;
-		this.nome = nome;
-		this.endereco = endereco;
-		this.cpf = cpf;
-		this.email = email;
-		this.telefone = telefone;
+		this.id = id;
 	}
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id_cliente")
-	public long getId_cliente() {
-		return id_cliente;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente", nullable = false)
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_cliente(long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@Column(name = "nome")
+	@Column(name = "nome", nullable = false, length = 60)
 	public String getNome() {
 		return nome;
 	}
@@ -56,40 +52,40 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
-	@Column(name = "endereco")
-	public String getEndereco() {
+	@Embedded
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-	@Column(name = "cpf")
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	@Column(name = "email")
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(name = "telefone")
+	@Column(name = "telefone", nullable = false, length = 15)
 	public String getTelefone() {
 		return telefone;
 	}
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	@Column(name = "cpfCnpj", nullable = false, length = 19)
+	public String getCpfCnpj() {
+		return cpfCnpj;
+	}
+
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
+	}
+
+	@Column(name = "email", nullable = false, length = 40)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
