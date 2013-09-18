@@ -8,7 +8,7 @@ import org.hibernate.Criteria;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 
-public abstract class AbstractBo<T, PK extends Serializable> {
+public abstract class AbstractBo<T, PK extends Serializable> implements IBaseBo<T, PK> {
 
 	public abstract IBaseDao<T, PK> getDao();
 

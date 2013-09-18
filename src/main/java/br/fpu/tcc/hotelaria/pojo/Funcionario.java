@@ -29,11 +29,13 @@ public class Funcionario implements Serializable {
 
 	public Funcionario() {
 		super();
+		endereco = new Endereco();
 	}
 
 	public Funcionario(Long id) {
 		super();
 		this.id = id;
+		endereco = new Endereco();
 	}
 
 	@Id
