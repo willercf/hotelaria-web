@@ -13,19 +13,24 @@
 	<h:body>
 		<h3>Hello world!</h3>
 		<h:form>
-			Nome: <h:inputText value="#{mbFunc.funcionario.nome}" />
-			Rua: <h:inputText value="#{mbFunc.funcionario.endereco.rua}" />
-			Numero: <h:inputText value="#{mbFunc.funcionario.endereco.numero}" />
-			Complemento: <h:inputText value="#{mbFunc.funcionario.endereco.complemento}" />
-			Cep: <h:inputText value="#{mbFunc.funcionario.endereco.cep}" />
-			Bairro: <h:inputText value="#{mbFunc.funcionario.endereco.bairro}" />
-			Cidade: <h:inputText value="#{mbFunc.funcionario.endereco.cidade}" />
-			Estado: <h:inputText value="#{mbFunc.funcionario.endereco.estado}" />
-			Telefone: <h:inputText value="#{mbFunc.funcionario.telefone}" />
-			Cpf: <h:inputText value="#{mbFunc.funcionario.cpf}" />
-			Login: <h:inputText value="#{mbFunc.funcionario.login}" />
-			Senha: <h:inputSecret value="#{mbFunc.funcionario.senha}" />
-			<h:commandButton value="Cadastrar"  action="#{mbFunc.salvar}" />
+			<h:panelGrid columns="2">
+				Nome: <h:inputText value="#{mbFunc.funcionario.nome}" required="true"/>
+				Rua: <h:inputText value="#{mbFunc.funcionario.endereco.rua}" required="true"/>
+				Numero: <h:inputText value="#{mbFunc.funcionario.endereco.numero}" required="true"/>
+				Complemento: <h:inputText value="#{mbFunc.funcionario.endereco.complemento}" required="true"/>
+				Cep: <h:inputText value="#{mbFunc.funcionario.endereco.cep}" required="true"/>
+				Bairro: <h:inputText value="#{mbFunc.funcionario.endereco.bairro}" required="true"/>
+				Cidade: <h:inputText value="#{mbFunc.funcionario.endereco.cidade}" required="true"/>
+				Estado: <h:inputText value="#{mbFunc.funcionario.endereco.estado}" required="true"/>
+				Telefone: <h:inputText value="#{mbFunc.funcionario.telefone}" required="true"/>
+				Cpf: <h:inputText value="#{mbFunc.funcionario.cpf}" required="true"/>
+				Login: <h:inputText value="#{mbFunc.funcionario.login}" required="true"/>
+				Senha: <h:inputSecret value="#{mbFunc.funcionario.senha}" required="true"/>
+				<h:commandButton value="Cadastrar"  action="#{mbFunc.salvar}" required="true"/>
+			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<h:outputFormat value="#{msg['#{mbFunc.currentMessage}']}"></h:outputFormat>
+			</h:panelGrid>
 		</h:form>
 	</h:body>
 	

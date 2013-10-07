@@ -4,8 +4,8 @@
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<!-- Database configuration -->
-	<import resource="classes/config/spring/DataSource.xml" />
-	<import resource="classes/config/spring/HibernateSessionFactory.xml" />
+	<import resource="classes/resources/config/spring/DataSource.xml" />
+	<import resource="classes/resources/config/spring/HibernateSessionFactory.xml" />
 
 	<!-- Beans Declarations - DAO -->
 	<bean id="funcionarioDao" class="br.fpu.tcc.hotelaria.model.dao.impl.FuncionarioDaoImpl">
@@ -16,5 +16,5 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="funcionarioBo" class="br.fpu.tcc.hotelaria.model.bo.impl.FuncionarioBoImpl">
 		<property name="funcionarioDao" ref="funcionarioDao" />
 	</bean>
-	
+
 </beans>

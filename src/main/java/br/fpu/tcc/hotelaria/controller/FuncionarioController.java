@@ -5,6 +5,7 @@ import java.io.Serializable;
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
+import br.fpu.tcc.hotelaria.web.ViewConstants;
 
 public class FuncionarioController implements Serializable {
 
@@ -16,6 +17,8 @@ public class FuncionarioController implements Serializable {
 	private FuncionarioBo funcionarioBo;
 
 	private Funcionario funcionario = new Funcionario();
+
+	private Boolean success = null;
 
 	public FuncionarioBo getFuncionarioBo() {
 		return funcionarioBo;
@@ -33,15 +36,24 @@ public class FuncionarioController implements Serializable {
 		this.funcionario = funcionario;
 	}
 
+	public String getCurrentMessage() {
+		if (success == null) {
+			return null;
+		}
+
+		return (success) ? ViewConstants.FUNCIONARIO_CADASTRO_ERRO : ViewConstants.FUNCIONARIO_CADASTRO_ERRO;
+	}
+
 	public void salvar() {
 		Long id;
 		try {
 			id = funcionarioBo.save(funcionario);
 			System.out.println("id: " + id);
+			success = true;
 		} catch (BoException e) {
 			System.out.println("Error to save funcionario...");
 			e.printStackTrace();
+			success = false;
 		}
-
 	}
 }
