@@ -2,16 +2,10 @@ package br.fpu.tcc.hotelaria.controller;
 
 import java.io.Serializable;
 
-import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 
-@ManagedBean(name = "mbFunc")
-@SessionScoped
 public class FuncionarioController implements Serializable {
 
 	/**
@@ -19,7 +13,6 @@ public class FuncionarioController implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Resource
 	private FuncionarioBo funcionarioBo;
 
 	private Funcionario funcionario = new Funcionario();

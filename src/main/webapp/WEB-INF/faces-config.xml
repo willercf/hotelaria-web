@@ -9,4 +9,14 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
 
+	<managed-bean>
+		<managed-bean-name>mbFunc</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.FuncionarioController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioBo</property-name>
+			<value>#{funcionarioBo}</value>
+		</managed-property>
+	</managed-bean>
+
 </faces-config>
