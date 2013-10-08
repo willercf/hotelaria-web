@@ -4,33 +4,73 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
 	<h:head>
 		<title>Hotelaria</title>
+		<h:outputStyleSheet library="css" name="/css/hotelaria.css" />
 	</h:head>
 	
 	<h:body>
-		<h3>Hello world!</h3>
+		<h3>Pesquisa de Funcionários</h3>
 		<h:form>
 			<h:panelGrid columns="2">
+				Filtros
 				Nome: <h:inputText value="#{mbFunc.funcionario.nome}" required="true"/>
-				Rua: <h:inputText value="#{mbFunc.funcionario.endereco.rua}" required="true"/>
-				Numero: <h:inputText value="#{mbFunc.funcionario.endereco.numero}" required="true"/>
-				Complemento: <h:inputText value="#{mbFunc.funcionario.endereco.complemento}" required="true"/>
-				Cep: <h:inputText value="#{mbFunc.funcionario.endereco.cep}" required="true"/>
-				Bairro: <h:inputText value="#{mbFunc.funcionario.endereco.bairro}" required="true"/>
-				Cidade: <h:inputText value="#{mbFunc.funcionario.endereco.cidade}" required="true"/>
-				Estado: <h:inputText value="#{mbFunc.funcionario.endereco.estado}" required="true"/>
-				Telefone: <h:inputText value="#{mbFunc.funcionario.telefone}" required="true"/>
 				Cpf: <h:inputText value="#{mbFunc.funcionario.cpf}" required="true"/>
 				Login: <h:inputText value="#{mbFunc.funcionario.login}" required="true"/>
-				Senha: <h:inputSecret value="#{mbFunc.funcionario.senha}" required="true"/>
-				<h:commandButton value="Cadastrar"  action="#{mbFunc.salvar}" required="true"/>
+				<h:commandButton value="Pesquisar"  action="#{mbFunc.pesquisar}" required="true"/>
 			</h:panelGrid>
-			<h:panelGrid columns="1">
-				<h:outputFormat></h:outputFormat>
-			</h:panelGrid>
+			
+			<h:dataTable value="#{mbFunc.funcionarios}" var="func"
+				styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Id</f:facet>
+    				<!-- row record -->
+    				#{func.id}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Nome</f:facet>
+    				<!-- row record -->
+    				#{func.nome}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Telefone</f:facet>
+    				<!-- row record -->
+    				#{func.telefone}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">CPF</f:facet>
+    				<!-- row record -->
+    				#{func.cpf}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Login</f:facet>
+    				<!-- row record -->
+    				#{func.login}
+    			</h:column>
+    			 
+    			 <h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Status</f:facet>
+    				<!-- row record -->
+    				#{func.ativo}
+    			</h:column>
+    			
+			</h:dataTable>
 		</h:form>
 	</h:body>
 	

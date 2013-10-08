@@ -73,13 +73,15 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> findByCriteria(Criteria criteria) throws PersistenceException {
+	public List<T> findByFilter(T entity) throws PersistenceException {
 
 		try {
-			return criteria.list();
+			Criteria criteria = createCriteria(entity);
+			return (List<T>) criteria.list();
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
 	}
 
+	protected abstract Criteria createCriteria(T entity);
 }

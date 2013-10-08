@@ -3,8 +3,6 @@ package br.fpu.tcc.hotelaria.model.bo;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Criteria;
-
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 
 public interface IBaseBo<T, PK extends Serializable> {
@@ -19,5 +17,6 @@ public interface IBaseBo<T, PK extends Serializable> {
 
 	void update(T entity) throws BoException;
 
-	List<T> findByCriteria(Criteria criteria) throws BoException;
+	List<T> findByFilter(T entity) throws BoException;
+
 }

@@ -3,8 +3,6 @@ package br.fpu.tcc.hotelaria.persistence;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Criteria;
-
 import br.fpu.tcc.hotelaria.persistence.exception.PersistenceException;
 
 public interface IBaseDao<T, PK extends Serializable> {
@@ -19,5 +17,5 @@ public interface IBaseDao<T, PK extends Serializable> {
 
 	void update(T entity) throws PersistenceException;
 
-	List<T> findByCriteria(Criteria criteria) throws PersistenceException;
+	List<T> findByFilter(T entity) throws PersistenceException;
 }

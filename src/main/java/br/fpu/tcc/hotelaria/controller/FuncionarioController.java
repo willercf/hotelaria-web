@@ -1,6 +1,8 @@
 package br.fpu.tcc.hotelaria.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
@@ -18,6 +20,8 @@ public class FuncionarioController implements Serializable {
 
 	private Funcionario funcionario = new Funcionario();
 
+	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+
 	private Boolean success = null;
 
 	public FuncionarioBo getFuncionarioBo() {
@@ -30,6 +34,14 @@ public class FuncionarioController implements Serializable {
 
 	public Funcionario getFuncionario() {
 		return funcionario;
+	}
+
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
 	}
 
 	public void setFuncionario(Funcionario funcionario) {
@@ -54,6 +66,15 @@ public class FuncionarioController implements Serializable {
 			System.out.println("Error to save funcionario...");
 			e.printStackTrace();
 			success = false;
+		}
+	}
+
+	public void pesquisar() {
+
+		try {
+			funcionarios = funcionarioBo.findByFilter(funcionario);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 }

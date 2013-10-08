@@ -3,8 +3,6 @@ package br.fpu.tcc.hotelaria.model.bo;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Criteria;
-
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 
@@ -56,10 +54,10 @@ public abstract class AbstractBo<T, PK extends Serializable> implements IBaseBo<
 		}
 	}
 
-	public List<T> findByCriteria(Criteria criteria) throws BoException {
+	public List<T> findByFilter(T entity) throws BoException {
 
 		try {
-			return getDao().findByCriteria(criteria);
+			return getDao().findByFilter(entity);
 		} catch (Exception e) {
 			throw new BoException(e);
 		}
