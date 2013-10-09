@@ -11,6 +11,7 @@
 		<ui:define name="body">
 			<h3>Cadastro de Funcionários</h3>
 			<h:panelGrid columns="3">
+				Id: <b>#{mbFunc.funcionario.id}</b> <h:inputHidden id="txtId" value="#{mbFunc.funcionario.id}" /><h:message for="txtId" />
 				Nome: <h:inputText id="txtNome" value="#{mbFunc.funcionario.nome}" required="true" requiredMessage="#{msg['formulario.nome.required']}" /> <h:message for="txtNome" />
 				Rua: <h:inputText id="txtRua" value="#{mbFunc.funcionario.endereco.rua}" required="true" requiredMessage="#{msg['formulario.rua.required']}" /> <h:message for="txtRua" />
 				Número: <h:inputText id="txtNumero" value="#{mbFunc.funcionario.endereco.numero}" required="true" requiredMessage="#{msg['formulario.numero.required']}" /> <h:message for="txtNumero" />
@@ -22,13 +23,12 @@
 				Telefone: <h:inputText id="txtTelefone" value="#{mbFunc.funcionario.telefone}" required="true" requiredMessage="#{msg['formulario.telefone.required']}" /> <h:message for="txtTelefone" />
 				Cpf: <h:inputText id="txtCpf" value="#{mbFunc.funcionario.cpf}" required="true" requiredMessage="#{msg['formulario.cpf.required']}" /> <h:message for="txtCpf" />
 				Login: <h:inputText id="txtLogin" value="#{mbFunc.funcionario.login}" required="true" requiredMessage="#{msg['formulario.login.required']}" /> <h:message for="txtLogin" />
-				Senha: <h:inputSecret id="txtSenha" value="#{mbFunc.funcionario.senha}" required="true" requiredMessage="#{msg['formulario.senha.required']}" /> <h:message for="txtSenha" />
-				<h:commandButton value="Cadastrar" action="#{mbFunc.salvar}" />
+				<h:commandButton value="Cadastrar" action="#{mbFunc.editar}" />
 			</h:panelGrid>
 <!-- 			<h:panelGrid columns="1"> -->
 <!-- 				<h:outputFormat value="#{msg['funcionario.cadastro.sucesso']}"></h:outputFormat> -->
 <!-- 			</h:panelGrid> -->
 		</ui:define>
-	</ui:composition>
+	</ui:composition>	
 
 </html>
