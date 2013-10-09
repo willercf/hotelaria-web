@@ -5,17 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 	
-	<h:head>
-		<title>Hotelaria</title>
-		<!-- <h:outputStyleSheet library="css" name="hotelaria.css" />  -->
-		<link type="text/css" rel="stylesheet" href="../css/hotelaria.css" />
-	</h:head>
 	
-	<h:body>
-		<h3>Pesquisa de Funcionários</h3>
-		<h:form>
+	
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			<h3>Pesquisa de Funcionários</h3>
 			<h:panelGrid columns="2">
 				Filtros
 				Nome: <h:inputText value="#{mbFunc.funcionario.nome}" />
@@ -24,55 +21,66 @@
 				<h:commandButton value="Pesquisar" action="#{mbFunc.pesquisar}" />
 			</h:panelGrid>
 			
-			<h:dataTable value="#{mbFunc.funcionarios}" var="func"
+			<p:dataTable value="#{mbFunc.funcionarios}" var="func"
 				styleClass="order-table"
     			headerClass="order-table-header"
-    			rowClasses="order-table-odd-row,order-table-even-row">
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			paginator="true"
+    			rows="2">
     			
-    			<h:column>
+    			<p:column>
     				<!-- column header -->
     				<f:facet name="header">Id</f:facet>
     				<!-- row record -->
     				#{func.id}
-    			</h:column>
+    			</p:column>
     			
-    			<h:column>
+    			<p:column>
     				<!-- column header -->
     				<f:facet name="header">Nome</f:facet>
     				<!-- row record -->
     				#{func.nome}
-    			</h:column>
+    			</p:column>
     			
-    			<h:column>
+    			<p:column>
     				<!-- column header -->
     				<f:facet name="header">Telefone</f:facet>
     				<!-- row record -->
     				#{func.telefone}
-    			</h:column>
+    			</p:column>
     			
-    			<h:column>
+    			<p:column>
     				<!-- column header -->
     				<f:facet name="header">CPF</f:facet>
     				<!-- row record -->
     				#{func.cpf}
-    			</h:column>
+    			</p:column>
     			
-    			<h:column>
+    			<p:column>
     				<!-- column header -->
     				<f:facet name="header">Login</f:facet>
     				<!-- row record -->
     				#{func.login}
-    			</h:column>
+    			</p:column>
     			 
-    			 <h:column>
+    			 <p:column>
     				<!-- column header -->
     				<f:facet name="header">Status</f:facet>
     				<!-- row record -->
-    				#{func.ativo}
-    			</h:column>
+    				#{func.ativo} &nbsp;
+    				<p:commandLink value="Alterar Status" action="#{mbFunc.alterarStatus}">
+    					<f:setPropertyActionListener value="#{func}" target="#{mbFunc.funcionario}" />
+    				</p:commandLink>
+    			</p:column>
     			
-			</h:dataTable>
-		</h:form>
-	</h:body>
+    			<p:column>
+    				<p:commandLink value="Editar" action="#{mbFunc.carregarEdicao}">
+    					<f:setPropertyActionListener value="#{func}" target="#{mbFunc.funcionario}" />
+    				</p:commandLink>
+    			</p:column>
+    			
+			</p:dataTable>		
+		</ui:define>
+	</ui:composition>
 	
 </html>

@@ -27,6 +27,12 @@ public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements 
 		return funcionarioDao;
 	}
 
+	@Override
+	public Long save(Funcionario entity) throws BoException {
+		entity.setAtivo(true);
+		return super.save(entity);
+	}
+
 	public void changeStatus(Funcionario funcionario) throws BoException {
 
 		try {

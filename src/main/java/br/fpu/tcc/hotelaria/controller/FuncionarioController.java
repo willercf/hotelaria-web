@@ -7,7 +7,6 @@ import java.util.List;
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
-import br.fpu.tcc.hotelaria.web.ViewConstants;
 
 public class FuncionarioController implements Serializable {
 
@@ -22,7 +21,7 @@ public class FuncionarioController implements Serializable {
 
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
-	private Boolean success = null;
+	// private Boolean success = null;
 
 	public FuncionarioBo getFuncionarioBo() {
 		return funcionarioBo;
@@ -48,24 +47,25 @@ public class FuncionarioController implements Serializable {
 		this.funcionario = funcionario;
 	}
 
-	public String getCurrentMessage() {
-		if (success == null) {
-			return null;
-		}
-
-		return (success) ? ViewConstants.FUNCIONARIO_CADASTRO_ERRO : ViewConstants.FUNCIONARIO_CADASTRO_ERRO;
-	}
+	// public String getCurrentMessage() {
+	// if (success == null) {
+	// return null;
+	// }
+	//
+	// return (success) ? ViewConstants.FUNCIONARIO_CADASTRO_ERRO :
+	// ViewConstants.FUNCIONARIO_CADASTRO_ERRO;
+	// }
 
 	public void salvar() {
 		Long id;
 		try {
 			id = funcionarioBo.save(funcionario);
 			System.out.println("id: " + id);
-			success = true;
+			// success = true;
 		} catch (BoException e) {
 			System.out.println("Error to save funcionario...");
 			e.printStackTrace();
-			success = false;
+			// success = false;
 		}
 	}
 
@@ -74,7 +74,38 @@ public class FuncionarioController implements Serializable {
 		try {
 			funcionarios = funcionarioBo.findByFilter(funcionario);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Error to save funcionario...");
+			e.printStackTrace();
 		}
+	}
+
+	public void alterarStatus() {
+
+		try {
+			funcionarioBo.changeStatus(funcionario);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// success = false;
+		} finally {
+			pesquisar();
+		}
+	}
+
+	public String carregarEdicao() {
+
+		return "edit?faces-redirect=true";
+	}
+
+	public String editar() {
+
+		try {
+			funcionarioBo.update(funcionario);
+			return "list?faces-redirect=true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			// success = false;
+		}
+
+		return null;
 	}
 }
