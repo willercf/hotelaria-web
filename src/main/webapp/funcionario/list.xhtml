@@ -9,7 +9,8 @@
 	
 	<h:head>
 		<title>Hotelaria</title>
-		<h:outputStyleSheet library="css" name="/css/hotelaria.css" />
+		<!-- <h:outputStyleSheet library="css" name="hotelaria.css" />  -->
+		<link type="text/css" rel="stylesheet" href="../css/hotelaria.css" />
 	</h:head>
 	
 	<h:body>
@@ -17,10 +18,10 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				Filtros
-				Nome: <h:inputText value="#{mbFunc.funcionario.nome}" required="true"/>
-				Cpf: <h:inputText value="#{mbFunc.funcionario.cpf}" required="true"/>
-				Login: <h:inputText value="#{mbFunc.funcionario.login}" required="true"/>
-				<h:commandButton value="Pesquisar"  action="#{mbFunc.pesquisar}" required="true"/>
+				Nome: <h:inputText value="#{mbFunc.funcionario.nome}" />
+				Cpf: <h:inputText value="#{mbFunc.funcionario.cpf}" />
+				Login: <h:inputText value="#{mbFunc.funcionario.login}" />
+				<h:commandButton value="Pesquisar" action="#{mbFunc.pesquisar}" />
 			</h:panelGrid>
 			
 			<h:dataTable value="#{mbFunc.funcionarios}" var="func"
