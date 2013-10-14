@@ -23,7 +23,7 @@
 				Cpf: <h:inputText id="txtCpf" value="#{mbFunc.funcionario.cpf}" required="true" requiredMessage="#{msg['formulario.cpf.required']}" /> <h:message for="txtCpf" />
 				Login: <h:inputText id="txtLogin" value="#{mbFunc.funcionario.login}" required="true" requiredMessage="#{msg['formulario.login.required']}" /> <h:message for="txtLogin" />
 				Senha: <h:inputSecret id="txtSenha" value="#{mbFunc.funcionario.senha}" required="true" requiredMessage="#{msg['formulario.senha.required']}" /> <h:message for="txtSenha" />
-				<h:commandButton value="Cadastrar" action="#{mbFunc.salvar}" />
+				<h:commandButton value="Cadastrar" action="#{mbFunc.save}" />
 			</h:panelGrid>
 <!-- 			<h:panelGrid columns="1"> -->
 <!-- 				<h:outputFormat value="#{msg['funcionario.cadastro.sucesso']}"></h:outputFormat> -->

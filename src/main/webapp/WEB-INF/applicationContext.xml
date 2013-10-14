@@ -12,9 +12,18 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="clienteDao" class="br.fpu.tcc.hotelaria.model.dao.impl.ClienteDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
 	<!-- Beans Declarations - BO -->
 	<bean id="funcionarioBo" class="br.fpu.tcc.hotelaria.model.bo.impl.FuncionarioBoImpl">
 		<property name="funcionarioDao" ref="funcionarioDao" />
+	</bean>
+
+	<bean id="clienteBo" class="br.fpu.tcc.hotelaria.model.bo.impl.ClienteBoImpl">
+		<property name="clienteDao" ref="clienteDao" />
 	</bean>
 
 </beans>

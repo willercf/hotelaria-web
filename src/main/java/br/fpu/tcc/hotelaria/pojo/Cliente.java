@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,14 +24,17 @@ public class Cliente implements Serializable {
 	private String telefone;
 	private String cpfCnpj;
 	private String email;
+	private TipoPessoa tipoPessoa;
 
 	public Cliente() {
-
+		super();
+		this.endereco = new Endereco();
 	}
 
 	public Cliente(Long id) {
 		super();
 		this.id = id;
+		this.endereco = new Endereco();
 	}
 
 	@Id
@@ -86,6 +91,41 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Column(name = "tipo_pessoa", nullable = false, length = 1)
+	@Enumerated(value = EnumType.STRING)
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }
