@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.fpu.tcc.hotelaria.enums.StatusFuncionario;
+
 @Entity
 @Table(name = "tb_funcionario")
 public class Funcionario implements Serializable {

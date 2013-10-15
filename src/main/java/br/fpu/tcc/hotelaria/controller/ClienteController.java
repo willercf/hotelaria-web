@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 
+import br.fpu.tcc.hotelaria.enums.TipoPessoa;
 import br.fpu.tcc.hotelaria.model.bo.ClienteBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Cliente;
-import br.fpu.tcc.hotelaria.pojo.TipoPessoa;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
 public class ClienteController extends BaseController {

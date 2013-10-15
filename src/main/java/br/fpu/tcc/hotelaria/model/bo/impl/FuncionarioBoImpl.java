@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.fpu.tcc.hotelaria.enums.StatusFuncionario;
 import br.fpu.tcc.hotelaria.model.bo.AbstractBo;
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
@@ -13,7 +14,6 @@ import br.fpu.tcc.hotelaria.model.bo.exception.PasswordDoesntMatchException;
 import br.fpu.tcc.hotelaria.model.dao.FuncionarioDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
-import br.fpu.tcc.hotelaria.pojo.StatusFuncionario;
 import br.fpu.tcc.hotelaria.utils.CipherUtil;
 
 public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements FuncionarioBo {
