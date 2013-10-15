@@ -3,9 +3,13 @@ package br.fpu.tcc.hotelaria.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
+import br.fpu.tcc.hotelaria.model.bo.exception.PasswordDoesntMatchException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
+import br.fpu.tcc.hotelaria.web.BundleConstants;
 
 public class FuncionarioController extends BaseController {
 
@@ -48,7 +52,7 @@ public class FuncionarioController extends BaseController {
 
 		funcionario = new Funcionario();
 		funcionarios = new ArrayList<Funcionario>();
-		return "/funcionario/insert?faces-redirect=true";
+		return "/funcionarioInsert?faces-redirect=true";
 	}
 
 	public void save() {
@@ -56,8 +60,15 @@ public class FuncionarioController extends BaseController {
 		try {
 			id = funcionarioBo.save(funcionario);
 			System.out.println("id: " + id);
+			funcionario = new Funcionario();
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
 		} catch (BoException e) {
 			e.printStackTrace();
+			if (e instanceof PasswordDoesntMatchException) {
+				super.addGlobalMessage(BundleConstants.FORUMULARIO_SENHAS_INCONFORMIDADE);
+			} else {
+				super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
+			}
 		}
 	}
 
@@ -67,6 +78,7 @@ public class FuncionarioController extends BaseController {
 			funcionarios = funcionarioBo.findByFilter(funcionario);
 		} catch (Exception e) {
 			e.printStackTrace();
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
 		}
 	}
 
@@ -74,8 +86,11 @@ public class FuncionarioController extends BaseController {
 
 		try {
 			funcionarioBo.changeStatus(funcionario);
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
+			funcionario = new Funcionario();
 		} catch (Exception e) {
 			e.printStackTrace();
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
 		} finally {
 			search();
 		}
@@ -83,16 +98,18 @@ public class FuncionarioController extends BaseController {
 
 	public String showUpdate() {
 
-		return "/funcionario/edit?faces-redirect=true";
+		return "/funcionarioEdit?faces-redirect=true";
 	}
 
 	public String update() {
 
 		try {
 			funcionarioBo.update(funcionario);
-			return "/funcionario/list?faces-redirect=true";
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
+			return "/funcionarioList?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
 		}
 
 		return null;

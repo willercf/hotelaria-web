@@ -15,17 +15,19 @@
 	</h:head>
 	
 	<h:body>
-		<h:form>
-			<div id="hedaer">
+		<div id="hedaer">
+			<h:form>
 				<ui:include src="header.xhtml" />
-			</div>
-			<div id="body">
+			</h:form>
+		</div>
+		<div id="body">
+			<h:form>
 				<ui:insert name="body" />
-			</div>
-			<div id="footer">
-				<ui:include src="footer.xhtml" />
-			</div>
-		</h:form>
+			</h:form>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+		</div>
 	</h:body>
 	
 </html>

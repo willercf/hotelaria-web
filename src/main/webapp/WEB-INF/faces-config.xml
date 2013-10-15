@@ -11,9 +11,6 @@
 			<base-name>resources.bundles.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
-		<!-- <locale-config> -->
-		<!-- <default-locale>pt_BR</default-locale> -->
-		<!-- </locale-config> -->
 	</application>
 
 	<managed-bean>

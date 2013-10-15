@@ -10,12 +10,12 @@
 
 	<p:menubar>
 		<p:submenu label="Funcionário">
-			<p:menuitem value="Cadastrar" action="#{mbFunc.showInsert}" />
-			<p:menuitem value="Listar" url="/funcionario/list.xhtml" />
+			<p:menuitem ajax="true" value="Cadastrar" action="#{mbFunc.showInsert}" />
+			<p:menuitem ajax="true" value="Listar" url="/funcionarioList.xhtml" />
 		</p:submenu>
 		<p:submenu label="Cliente">
-			<p:menuitem value="Cadastrar" action="#{mbCli.showInsert}" />
-			<p:menuitem value="Listar" url="/cliente/list.xhtml" />
+			<p:menuitem ajax="true" value="Cadastrar" action="#{mbCli.showInsert}" />
+			<p:menuitem ajax="true" value="Listar" url="/clienteList.xhtml" />
 		</p:submenu>
 	</p:menubar>
 

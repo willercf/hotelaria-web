@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_funcionario")
@@ -25,7 +28,8 @@ public class Funcionario implements Serializable {
 	private String cpf;
 	private String login;
 	private String senha;
-	private boolean ativo;
+	private StatusFuncionario status;
+	private String confirmacaoSenha;
 
 	public Funcionario() {
 		super();
@@ -94,7 +98,7 @@ public class Funcionario implements Serializable {
 		this.login = login;
 	}
 
-	@Column(name = "senha", nullable = false, length = 12)
+	@Column(name = "senha", nullable = false, length = 60)
 	public String getSenha() {
 		return senha;
 	}
@@ -103,13 +107,23 @@ public class Funcionario implements Serializable {
 		this.senha = senha;
 	}
 
-	@Column(name = "ativo", nullable = false)
-	public boolean isAtivo() {
-		return ativo;
+	@Column(name = "status", nullable = false)
+	@Enumerated(value = EnumType.ORDINAL)
+	public void setStatus(StatusFuncionario status) {
+		this.status = status;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+
+	@Transient
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+
+	public StatusFuncionario getStatus() {
+		return status;
 	}
 
 	@Override

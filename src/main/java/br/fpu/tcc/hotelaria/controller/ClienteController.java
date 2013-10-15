@@ -56,7 +56,7 @@ public class ClienteController extends BaseController {
 
 		cliente = new Cliente();
 		clientes = new ArrayList<Cliente>();
-		return "/cliente/insert?faces-redirect=true";
+		return "/clienteInsert?faces-redirect=true";
 	}
 
 	public void save() {
@@ -84,7 +84,7 @@ public class ClienteController extends BaseController {
 
 	public String showUpdate() {
 
-		return "/cliente/edit?faces-redirect=true";
+		return "/clienteEdit?faces-redirect=true";
 	}
 
 	public String update() {
@@ -92,7 +92,7 @@ public class ClienteController extends BaseController {
 		try {
 			clienteBo.update(cliente);
 			super.addGlobalMessage(BundleConstants.CLIENTE_CADASTRO_SUCESSO);
-			return "/cliente/list?faces-redirect=true";
+			return "/clienteList?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
 			super.addGlobalMessage(BundleConstants.CLIENTE_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
