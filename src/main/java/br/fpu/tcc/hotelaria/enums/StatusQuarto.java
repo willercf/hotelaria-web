@@ -2,7 +2,7 @@ package br.fpu.tcc.hotelaria.enums;
 
 public enum StatusQuarto {
 
-	AVAILABLE("Disponivel"), RESERVED("Reservado"), MAINTENANCE("Manutenção");
+	AVAILABLE("Disponivel"), RESERVED("Reservado");
 
 	private String description;
 

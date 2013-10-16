@@ -16,6 +16,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="quartoDao" class="br.fpu.tcc.hotelaria.model.dao.impl.QuartoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 
 	<!-- Beans Declarations - BO -->
 	<bean id="funcionarioBo" class="br.fpu.tcc.hotelaria.model.bo.impl.FuncionarioBoImpl">
@@ -24,6 +28,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<bean id="clienteBo" class="br.fpu.tcc.hotelaria.model.bo.impl.ClienteBoImpl">
 		<property name="clienteDao" ref="clienteDao" />
+	</bean>
+
+	<bean id="quartoBo" class="br.fpu.tcc.hotelaria.model.bo.impl.QuartoBoImpl">
+		<property name="quartoDao" ref="quartoDao" />
 	</bean>
 
 </beans>

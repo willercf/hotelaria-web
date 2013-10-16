@@ -5,10 +5,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.fpu.tcc.hotelaria.enums.CategoryQuarto;
@@ -22,8 +23,8 @@ public class Quarto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private CategoryQuarto tipo;
-	private Long numero;
+	private CategoryQuarto categoria;
+	private String numero;
 	private Long andar;;
 	private BigDecimal preco;
 
@@ -31,48 +32,82 @@ public class Quarto implements Serializable {
 
 	}
 
-	private Quarto(Long id) {
+	public Quarto(Long id) {
 		super();
 		this.id = id;
 	}
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id_quarto")
-	public long getId_quarto() {
-		return id_quarto;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_quarto(long id_quarto) {
-		this.id_quarto = id_quarto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@Column(name = "tipo")
-	public String getTipo() {
-		return tipo;
+	@Column(name = "categoria", nullable = false)
+	@Enumerated(value = EnumType.ORDINAL)
+	public CategoryQuarto getCategoria() {
+		return categoria;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setCategoria(CategoryQuarto categoria) {
+		this.categoria = categoria;
 	}
 
-	@Column(name = "preco")
-	public String getPreco() {
+	@Column(name = "numero", nullable = false, length = 5)
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	@Column(name = "andar", nullable = false)
+	public Long getAndar() {
+		return andar;
+	}
+
+	public void setAndar(Long andar) {
+		this.andar = andar;
+	}
+
+	@Column(name = "preco", nullable = false)
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "reserva", referencedColumnName = "id_reserva")
-	public Reserva getReserva() {
-		return reserva;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Quarto other = (Quarto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }
