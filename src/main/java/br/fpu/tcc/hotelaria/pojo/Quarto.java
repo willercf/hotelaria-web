@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.fpu.tcc.hotelaria.enums.CategoryQuarto;
+import br.fpu.tcc.hotelaria.enums.CategoriaQuarto;
 
 @Entity
 @Table(name = "tb_quarto")
@@ -23,10 +23,10 @@ public class Quarto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private CategoryQuarto categoria;
+	private CategoriaQuarto categoria;
 	private String numero;
 	private Long andar;;
-	private BigDecimal preco;
+	private BigDecimal precoDiaria;
 
 	public Quarto() {
 
@@ -50,11 +50,11 @@ public class Quarto implements Serializable {
 
 	@Column(name = "categoria", nullable = false)
 	@Enumerated(value = EnumType.ORDINAL)
-	public CategoryQuarto getCategoria() {
+	public CategoriaQuarto getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(CategoryQuarto categoria) {
+	public void setCategoria(CategoriaQuarto categoria) {
 		this.categoria = categoria;
 	}
 
@@ -76,13 +76,13 @@ public class Quarto implements Serializable {
 		this.andar = andar;
 	}
 
-	@Column(name = "preco", nullable = false)
-	public BigDecimal getPreco() {
-		return preco;
+	@Column(name = "preco_diaria", nullable = false)
+	public BigDecimal getPrecoDiaria() {
+		return precoDiaria;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setPrecoDiaria(BigDecimal precoDiaria) {
+		this.precoDiaria = precoDiaria;
 	}
 
 	@Override

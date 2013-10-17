@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -16,6 +16,10 @@
 		<p:submenu label="Cliente">
 			<p:menuitem ajax="true" value="Cadastrar" action="#{mbCli.showInsert}" />
 			<p:menuitem ajax="true" value="Listar" url="/clienteList.xhtml" />
+		</p:submenu>
+		<p:submenu label="Quarto">
+			<p:menuitem ajax="true" value="Cadastrar" action="#{mbQuarto.showInsert}" />
+			<p:menuitem ajax="true" value="Listar" url="/quartoList.xhtml" />
 		</p:submenu>
 	</p:menubar>
 

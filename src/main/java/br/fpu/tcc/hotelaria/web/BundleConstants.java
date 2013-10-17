@@ -13,4 +13,9 @@ public class BundleConstants {
 	public static final String CLIENTE_CADASTRO_SUCESSO = "cliente.cadastro.sucesso";
 
 	public static final String CLIENTE_CADASTRO_ERRO = "cliente.cadastro.erro";
+
+	public static final String QUARTO_CADASTRO_SUCESSO = "quarto.cadastro.sucesso";
+
+	public static final String QUARTO_CADASTRO_ERRO = "quarto.cadastro.erro";
+
 }

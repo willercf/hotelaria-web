@@ -41,4 +41,18 @@
 		</managed-property>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>mbQuarto</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.QuartoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>quartoBo</property-name>
+			<value>#{quartoBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
 </faces-config>
