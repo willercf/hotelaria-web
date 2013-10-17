@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			<h3>Cadastro de Quartos</h3>
+			<h:panelGrid columns="3">
+				Número: <h:inputText id="txtNumero" value="#{mbQuarto.quarto.numero}" required="true" requiredMessage="#{msg['formulario.numero.required']}" /> <h:message for="txtNumero" />
+				Andar: <h:inputText id="txtAndar" value="#{mbQuarto.quarto.andar}" required="true" requiredMessage="#{msg['formulario.andar.required']}" /> <h:message for="txtAndar" />
+				Preço Diária: <h:inputText id="txtPrecoDiaria" value="#{mbQuarto.quarto.precoDiaria}" required="true" requiredMessage="#{msg['formulario.precoDiaria.required']}" /> <h:message for="txtPrecoDiaria" />
+				Categoria:
+				<h:selectOneRadio id="sorCategoria" value="#{mbQuarto.quarto.categoria}" required="true" requiredMessage="#{msg['formulario.categoria.required']}">
+					<f:selectItems value="#{mbQuarto.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+				</h:selectOneRadio> <h:message for="sorCategoria" />
+				<h:commandButton value="Cadastrar" action="#{mbQuarto.update}" />
+			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<h:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>
