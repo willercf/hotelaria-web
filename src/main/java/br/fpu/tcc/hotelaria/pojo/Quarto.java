@@ -39,7 +39,7 @@ public class Quarto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
+	@Column(name = "id_quarto", nullable = false)
 	public Long getId() {
 		return id;
 	}

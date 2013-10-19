@@ -18,4 +18,7 @@ public class BundleConstants {
 
 	public static final String QUARTO_CADASTRO_ERRO = "quarto.cadastro.erro";
 
+	public static final String RESERVA_CADASTRO_SUCESSO = "reserva.cadastro.sucesso";
+
+	public static final String RESERVA_CADASTRO_ERRO = "reserva.cadastro.erro";
 }

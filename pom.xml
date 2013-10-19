@@ -113,6 +113,12 @@
 			<version>3.4.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>biz.source_code</groupId>
+			<artifactId>base64coder</artifactId>
+			<version>2010-12-19</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>hotelaria-web</finalName>

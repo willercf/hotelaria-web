@@ -3,11 +3,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+	<!-- ==================================================== -->
 	<!-- Database configuration -->
+	<!-- ==================================================== -->
 	<import resource="classes/resources/config/spring/DataSource.xml" />
 	<import resource="classes/resources/config/spring/HibernateSessionFactory.xml" />
 
+
+	<!-- ==================================================== -->
 	<!-- Beans Declarations - DAO -->
+	<!-- ==================================================== -->
 	<bean id="funcionarioDao" class="br.fpu.tcc.hotelaria.model.dao.impl.FuncionarioDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -20,8 +25,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="reservaDao" class="br.fpu.tcc.hotelaria.model.dao.impl.ReservaDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
+
+	<!-- ==================================================== -->
 	<!-- Beans Declarations - BO -->
+	<!-- ==================================================== -->
 	<bean id="funcionarioBo" class="br.fpu.tcc.hotelaria.model.bo.impl.FuncionarioBoImpl">
 		<property name="funcionarioDao" ref="funcionarioDao" />
 	</bean>
@@ -32,6 +43,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<bean id="quartoBo" class="br.fpu.tcc.hotelaria.model.bo.impl.QuartoBoImpl">
 		<property name="quartoDao" ref="quartoDao" />
+	</bean>
+
+	<bean id="reservaBo" class="br.fpu.tcc.hotelaria.model.bo.impl.ReservaBoImpl">
+		<property name="reservaDao" ref="reservaDao" />
 	</bean>
 
 </beans>

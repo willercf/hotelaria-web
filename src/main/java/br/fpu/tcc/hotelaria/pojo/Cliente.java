@@ -39,6 +39,12 @@ public class Cliente implements Serializable {
 		this.endereco = new Endereco();
 	}
 
+	public Cliente(String nome) {
+		super();
+		this.nome = nome;
+		this.endereco = new Endereco();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente", nullable = false)

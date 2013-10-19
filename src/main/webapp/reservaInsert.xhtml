@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			<h3>Cadastro de Reservas</h3>
+			<h:panelGrid columns="3">
+
+				Cliente: <p:autoComplete id="txtCliente" value="#{mbReserva.reserva.cliente}"
+					completeMethod="#{mbReserva.findClienteByName}"
+					var="c" itemLabel="#{c.nome}" itemValue="#{c}"
+					converter="clienteConverter" forceSelection="true"
+					required="true" requiredMessage="#{msg['forumulario.cliente.required']}" />
+				<h:message for="txtCliente" />
+
+				Data Início: <p:calendar id="txtDataInicio" value="#{mbReserva.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" />
+				Data Fim: <p:calendar id="txtDataFim" value="#{mbReserva.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" />
+
+
+				<h:commandButton value="Cadastrar" action="#{mbReserva.save}" />
+			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<h:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>

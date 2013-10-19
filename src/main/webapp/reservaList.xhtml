@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			<h3>Pesquisa de Quartos</h3>
+			<div class="messages" style="text-align: center;"><h:messages globalOnly="true" /></div>
+			<h:panelGrid columns="2">
+				Filtros &nbsp;
+				Número: <h:inputText id="txtNumero" value="#{mbQuarto.quarto.numero}" />
+				Andar: <h:inputText id="txtAndar" value="#{mbQuarto.quarto.andar}" />
+				Categoria:
+				<h:selectOneRadio id="sorCategoria" value="#{mbQuarto.quarto.categoria}">
+					<f:selectItems value="#{mbQuarto.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+				</h:selectOneRadio>
+				<h:commandButton value="Pesquisar" action="#{mbQuarto.search}" />
+			</h:panelGrid>
+
+			<p:dataTable id="table" value="#{mbQuarto.quartos}" var="entity"
+				styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			paginator="true"
+    			rows="2">
+
+    			<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">Id</f:facet>
+    				<!-- row record -->
+    				#{entity.id}
+    			</p:column>
+
+    			<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">Número</f:facet>
+    				<!-- row record -->
+    				#{entity.numero}
+    			</p:column>
+
+    			<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">Andar</f:facet>
+    				<!-- row record -->
+    				#{entity.andar}
+    			</p:column>
+
+    			<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">Categoria</f:facet>
+    				<!-- row record -->
+    				#{entity.categoria.description}
+    			</p:column>
+
+    			<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">Preço Diária</f:facet>
+    				<!-- row record -->
+    				#{entity.precoDiaria}
+    			</p:column>
+
+    			<p:column>
+    				<p:commandLink value="Editar" action="#{mbQuarto.showUpdate}">
+    					<f:setPropertyActionListener value="#{entity}" target="#{mbQuarto.quarto}" />
+    				</p:commandLink>
+    			</p:column>
+
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</html>
