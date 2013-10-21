@@ -23,6 +23,60 @@
 				Data Início: <p:calendar id="txtDataInicio" value="#{mbReserva.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" />
 				Data Fim: <p:calendar id="txtDataFim" value="#{mbReserva.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" />
 
+				<h:panelGrid columns="2">
+					<h:outputLabel>Quartos: </h:outputLabel> <h:outputLabel>Selecione um quarto</h:outputLabel>
+					Número: <h:inputText id="txtNumero" value="#{mbReserva.quartoFilter.numero}" />
+					Andar: <h:inputText id="txtAndar" value="#{mbReserva.quartoFilter.andar}" />
+					Categoria:
+					<h:selectOneRadio id="sorCategoria" value="#{mbReserva.quartoFilter.categoria}">
+						<f:selectItems value="#{mbReserva.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+					</h:selectOneRadio>
+					<h:commandButton value="Pesquisar Quartos" action="#{mbReserva.searchQuartos}" />
+				</h:panelGrid>
+
+				<p:dataTable id="table" value="#{mbReserva.quartos}" var="entity"
+					styleClass="order-table"
+	    			headerClass="order-table-header"
+	    			rowClasses="order-table-odd-row,order-table-even-row"
+	    			rowKey="#{entity.id}"
+	    			selection="#{mbReserva.reserva.quarto}"
+	    			selectionMode="single">
+
+	    			<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Id</f:facet>
+	    				<!-- row record -->
+	    				#{entity.id}
+	    			</p:column>
+
+	    			<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Número</f:facet>
+	    				<!-- row record -->
+	    				#{entity.numero}
+	    			</p:column>
+
+	    			<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Andar</f:facet>
+	    				<!-- row record -->
+	    				#{entity.andar}
+	    			</p:column>
+
+	    			<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Categoria</f:facet>
+	    				<!-- row record -->
+	    				#{entity.categoria.description}
+	    			</p:column>
+
+	    			<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Preço Diária</f:facet>
+	    				<!-- row record -->
+	    				#{entity.precoDiaria}
+	    			</p:column>
+				</p:dataTable>
 
 				<h:commandButton value="Cadastrar" action="#{mbReserva.save}" />
 			</h:panelGrid>

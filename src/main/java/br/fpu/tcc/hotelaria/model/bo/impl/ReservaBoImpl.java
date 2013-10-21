@@ -2,11 +2,14 @@ package br.fpu.tcc.hotelaria.model.bo.impl;
 
 import javax.annotation.Resource;
 
+import br.fpu.tcc.hotelaria.enums.StatusQuarto;
 import br.fpu.tcc.hotelaria.model.bo.AbstractBo;
 import br.fpu.tcc.hotelaria.model.bo.ReservaBo;
+import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
+import br.fpu.tcc.hotelaria.web.BundleConstants;
 
 public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements
 		ReservaBo {
@@ -27,4 +30,30 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements
 		return reservaDao;
 	}
 
+	@Override
+	public Long save(Reserva entity) throws BoException {
+
+		validate(entity);
+		entity.setStatusQuarto(StatusQuarto.RESERVED);
+		return super.save(entity);
+	}
+
+	@Override
+	public void update(Reserva entity) throws BoException {
+		validate(entity);
+		super.update(entity);
+	}
+
+	private void validate(Reserva entity) throws BoException {
+
+		if (entity.getQuarto() == null) {
+			throw new BoException("Quarto is null",
+					BundleConstants.FORMULARIO_QUARTO_REQUERIDO);
+		}
+
+		if (reservaDao.existsRestriction(entity)) {
+			throw new BoException("Quarto already has reservation",
+					BundleConstants.FORMULARIO_QUARTO_POSSUI_RESERVA);
+		}
+	}
 }

@@ -5,4 +5,5 @@ import br.fpu.tcc.hotelaria.pojo.Reserva;
 
 public interface ReservaDao extends IBaseDao<Reserva, Long> {
 
+	boolean existsRestriction(Reserva entity);
 }

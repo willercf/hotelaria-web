@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
-import br.fpu.tcc.hotelaria.model.bo.exception.PasswordDoesntMatchException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
@@ -63,12 +62,7 @@ public class FuncionarioController extends BaseController {
 			funcionario = new Funcionario();
 			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
 		} catch (BoException e) {
-			e.printStackTrace();
-			if (e instanceof PasswordDoesntMatchException) {
-				super.addGlobalMessage(BundleConstants.FORUMULARIO_SENHAS_INCONFORMIDADE);
-			} else {
-				super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
-			}
+			super.treatErrorMessage(e, BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
 		}
 	}
 
@@ -78,7 +72,8 @@ public class FuncionarioController extends BaseController {
 			funcionarios = funcionarioBo.findByFilter(funcionario);
 		} catch (Exception e) {
 			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO,
+					FacesMessage.SEVERITY_ERROR);
 		}
 	}
 
@@ -90,7 +85,8 @@ public class FuncionarioController extends BaseController {
 			funcionario = new Funcionario();
 		} catch (Exception e) {
 			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
+			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO,
+					FacesMessage.SEVERITY_ERROR);
 		} finally {
 			search();
 		}

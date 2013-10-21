@@ -15,8 +15,10 @@ import br.fpu.tcc.hotelaria.model.dao.FuncionarioDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.utils.CipherUtil;
+import br.fpu.tcc.hotelaria.web.BundleConstants;
 
-public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements FuncionarioBo {
+public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements
+		FuncionarioBo {
 
 	@Resource
 	private FuncionarioDao funcionarioDao;
@@ -37,8 +39,10 @@ public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements 
 	@Override
 	public Long save(Funcionario entity) throws BoException {
 
-		if (!StringUtils.equals(entity.getSenha(), entity.getConfirmacaoSenha())) {
-			throw new PasswordDoesntMatchException("Password doesn't match...");
+		if (!StringUtils
+				.equals(entity.getSenha(), entity.getConfirmacaoSenha())) {
+			throw new PasswordDoesntMatchException("Password doesn't match...",
+					BundleConstants.FORUMULARIO_SENHAS_INCONFORMIDADE);
 		}
 
 		try {
@@ -55,8 +59,9 @@ public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements 
 
 		try {
 
-			funcionario.setStatus((funcionario.getStatus() == StatusFuncionario.ACTIVE) ? StatusFuncionario.INACTIVE
-					: StatusFuncionario.ACTIVE);
+			funcionario
+					.setStatus((funcionario.getStatus() == StatusFuncionario.ACTIVE) ? StatusFuncionario.INACTIVE
+							: StatusFuncionario.ACTIVE);
 			funcionarioDao.update(funcionario);
 		} catch (Exception e) {
 			throw new BoException(e);

@@ -14,6 +14,10 @@ public class PasswordDoesntMatchException extends BoException {
 		super(message);
 	}
 
+	public PasswordDoesntMatchException(String message, String keyMesage) {
+		super(message, keyMesage);
+	}
+
 	public PasswordDoesntMatchException(Throwable cause) {
 		super(cause);
 	}

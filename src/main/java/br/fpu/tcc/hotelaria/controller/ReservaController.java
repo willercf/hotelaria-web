@@ -12,6 +12,7 @@ import br.fpu.tcc.hotelaria.model.bo.ReservaBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Cliente;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
+import br.fpu.tcc.hotelaria.pojo.Quarto;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
@@ -31,6 +32,10 @@ public class ReservaController extends BaseController {
 	private Reserva reserva = new Reserva();
 
 	private List<Reserva> reservas = new ArrayList<Reserva>();
+
+	private Quarto quartoFilter = new Quarto();
+
+	private List<Quarto> quartos = new ArrayList<Quarto>();
 
 	public ReservaBo getReservaBo() {
 		return reservaBo;
@@ -72,6 +77,22 @@ public class ReservaController extends BaseController {
 		this.reservas = reservas;
 	}
 
+	public Quarto getQuartoFilter() {
+		return quartoFilter;
+	}
+
+	public void setQuartoFilter(Quarto quartoFilter) {
+		this.quartoFilter = quartoFilter;
+	}
+
+	public List<Quarto> getQuartos() {
+		return quartos;
+	}
+
+	public void setQuartos(List<Quarto> quartos) {
+		this.quartos = quartos;
+	}
+
 	public CategoriaQuarto[] getCategorias() {
 		return CategoriaQuarto.values();
 	}
@@ -80,6 +101,8 @@ public class ReservaController extends BaseController {
 
 		reserva = new Reserva();
 		reservas = new ArrayList<Reserva>();
+		quartoFilter = new Quarto();
+		quartos = new ArrayList<Quarto>();
 		return "/reservaInsert?faces-redirect=true";
 	}
 
@@ -91,9 +114,7 @@ public class ReservaController extends BaseController {
 			reserva = new Reserva();
 			super.addGlobalMessage(BundleConstants.RESERVA_CADASTRO_SUCESSO);
 		} catch (BoException e) {
-			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.RESERVA_CADASTRO_ERRO,
-					FacesMessage.SEVERITY_ERROR);
+			super.treatErrorMessage(e, BundleConstants.RESERVA_CADASTRO_ERRO);
 		}
 	}
 
@@ -142,6 +163,17 @@ public class ReservaController extends BaseController {
 		}
 
 		return result;
+	}
+
+	public void searchQuartos() {
+
+		try {
+			quartos = quartoBo.findByFilter(quartoFilter);
+		} catch (Exception e) {
+			e.printStackTrace();
+			super.addGlobalMessage(BundleConstants.FORMULARIO_PESQUISA_ERRO,
+					FacesMessage.SEVERITY_ERROR);
+		}
 	}
 
 	private Funcionario getAuthenticatedFuncionario() {

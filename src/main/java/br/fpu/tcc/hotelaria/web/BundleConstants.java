@@ -2,9 +2,13 @@ package br.fpu.tcc.hotelaria.web;
 
 public class BundleConstants {
 
-	public static final String FORMULARIO_PESQUISA_ERRO = "forumulario.pesquisa.erro";
-
 	public static final String FORUMULARIO_SENHAS_INCONFORMIDADE = "formulario.senhas.inconformidade";
+
+	public static final String FORMULARIO_QUARTO_REQUERIDO = "forumulario.quarto.required";
+
+	public static final String FORMULARIO_QUARTO_POSSUI_RESERVA = "forumulario.quarto.hasReservation";
+
+	public static final String FORMULARIO_PESQUISA_ERRO = "forumulario.pesquisa.erro";
 
 	public static final String FUNCIONARIO_CADASTRO_SUCESSO = "funcionario.cadastro.sucesso";
 
