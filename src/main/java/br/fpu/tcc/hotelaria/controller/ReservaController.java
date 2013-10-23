@@ -109,6 +109,7 @@ public class ReservaController extends BaseController {
 	public void save() {
 		Long id;
 		try {
+			reserva.setFuncionario(getAuthenticatedFuncionario());
 			id = reservaBo.save(reserva);
 			System.out.println("id: " + id);
 			reserva = new Reserva();

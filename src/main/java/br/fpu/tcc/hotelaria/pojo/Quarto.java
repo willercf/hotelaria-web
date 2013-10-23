@@ -110,4 +110,10 @@ public class Quarto implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		String patter = "Número: %s | Andar: %d | Categoria: %s";
+		return String.format(patter, numero, andar, categoria.getDescription());
+	}
+
 }

@@ -35,6 +35,7 @@ public class Reserva implements Serializable {
 
 	public Reserva() {
 		super();
+		init();
 	}
 
 	public Reserva(long id) {
@@ -54,7 +55,7 @@ public class Reserva implements Serializable {
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_funcionario", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "id_funcionario", nullable = false)
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -64,7 +65,7 @@ public class Reserva implements Serializable {
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cliente", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "id_cliente", nullable = false)
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -74,7 +75,7 @@ public class Reserva implements Serializable {
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_quarto", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "id_quarto", nullable = false)
 	public Quarto getQuarto() {
 		return quarto;
 	}
@@ -133,4 +134,8 @@ public class Reserva implements Serializable {
 		return true;
 	}
 
+	private void init() {
+		this.quarto = new Quarto();
+		this.cliente = new Cliente();
+	}
 }

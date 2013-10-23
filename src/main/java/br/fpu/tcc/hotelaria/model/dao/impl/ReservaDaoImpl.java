@@ -1,6 +1,7 @@
 package br.fpu.tcc.hotelaria.model.dao.impl;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -15,6 +16,7 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements
 	protected Criteria createCriteria(Reserva entity) {
 
 		Criteria criteria = getSession().createCriteria(getPersistentClass());
+		// criteria.
 
 		if (entity != null) {
 
@@ -29,10 +31,14 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements
 
 		criteria.setProjection(Projections.rowCount());
 		criteria.add(Restrictions.eq("quarto", entity.getQuarto()));
-		criteria.add(Restrictions.between("dataInicio", entity.getDataInicio(),
-				entity.getDataFim()));
-		criteria.add(Restrictions.between("dataFim", entity.getDataInicio(),
-				entity.getDataFim()));
+
+		Criterion initRange = Restrictions.between("dataInicio",
+				entity.getDataInicio(), entity.getDataFim());
+		Criterion endRange = Restrictions.between("dataFim",
+				entity.getDataInicio(), entity.getDataFim());
+		Criterion condition = Restrictions.disjunction().add(initRange)
+				.add(endRange);
+		criteria.add(condition);
 
 		if (entity.getId() != null) {
 			criteria.add(Restrictions.not(Restrictions.eq("id", entity.getId())));

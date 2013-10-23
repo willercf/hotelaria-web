@@ -1,5 +1,7 @@
 package br.fpu.tcc.hotelaria.model.bo.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import br.fpu.tcc.hotelaria.enums.StatusQuarto;
@@ -9,6 +11,7 @@ import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
+import br.fpu.tcc.hotelaria.utils.DateUtil;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
 public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements
@@ -31,15 +34,26 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements
 	}
 
 	@Override
+	public List<Reserva> findByFilter(Reserva entity) throws BoException {
+
+		DateUtil.applyTimeDefaultReserva(entity);
+		return super.findByFilter(entity);
+	}
+
+	@Override
 	public Long save(Reserva entity) throws BoException {
 
+		DateUtil.applyTimeDefaultReserva(entity);
 		validate(entity);
 		entity.setStatusQuarto(StatusQuarto.RESERVED);
+
 		return super.save(entity);
 	}
 
 	@Override
 	public void update(Reserva entity) throws BoException {
+
+		DateUtil.applyTimeDefaultReserva(entity);
 		validate(entity);
 		super.update(entity);
 	}
@@ -56,4 +70,5 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements
 					BundleConstants.FORMULARIO_QUARTO_POSSUI_RESERVA);
 		}
 	}
+
 }
