@@ -10,6 +10,8 @@ public class BundleConstants {
 
 	public static final String FORMULARIO_PESQUISA_ERRO = "forumulario.pesquisa.erro";
 
+	public static final String FORMULARIO_EDICAO_ERRO = "forumulario.edicao.erro";
+
 	public static final String FUNCIONARIO_CADASTRO_SUCESSO = "funcionario.cadastro.sucesso";
 
 	public static final String FUNCIONARIO_CADASTRO_ERRO = "funcionario.cadastro.erro";

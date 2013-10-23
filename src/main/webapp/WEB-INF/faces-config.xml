@@ -13,10 +13,41 @@
 		</resource-bundle>
 	</application>
 
+	<!-- ================================================= -->
+	<!-- Funcionário -->
+	<!-- ================================================= -->
 	<managed-bean>
-		<managed-bean-name>mbFunc</managed-bean-name>
-		<managed-bean-class>br.fpu.tcc.hotelaria.controller.FuncionarioController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-name>mbFuncCrete</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.funcionario.FuncionarioCreateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioBo</property-name>
+			<value>#{funcionarioBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>mbFuncUpdate</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.funcionario.FuncionarioUpdateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioBo</property-name>
+			<value>#{funcionarioBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>mbFuncSearch</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.funcionario.FuncionarioSearchController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>funcionarioBo</property-name>
 			<value>#{funcionarioBo}</value>

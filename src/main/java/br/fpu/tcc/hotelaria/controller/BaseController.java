@@ -3,6 +3,7 @@ package br.fpu.tcc.hotelaria.controller;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
@@ -15,6 +16,8 @@ public abstract class BaseController implements Serializable {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private FacesContext currentContext;
 
 	private ResourceBundle bundle;
 
@@ -38,12 +41,16 @@ public abstract class BaseController implements Serializable {
 			facesMessage.setSeverity(severity);
 		}
 		getCurrentcontext().addMessage(null, facesMessage);
-		getCurrentcontext().getExternalContext().getFlash()
-				.setKeepMessages(true);
+		getCurrentcontext().getExternalContext().getFlash().setKeepMessages(true);
+		getCurrentcontext().getExternalContext().getFlash().doPostPhaseActions(currentContext);
 	}
 
 	protected FacesContext getCurrentcontext() {
-		return FacesContext.getCurrentInstance();
+
+		if (currentContext == null) {
+			currentContext = FacesContext.getCurrentInstance();
+		}
+		return currentContext;
 	}
 
 	protected void treatErrorMessage(BoException e, String genericErrorMessage) {
@@ -54,5 +61,17 @@ public abstract class BaseController implements Serializable {
 		} else {
 			addGlobalMessage(genericErrorMessage, FacesMessage.SEVERITY_ERROR);
 		}
+	}
+
+	protected String getQueryStringParam(String key) {
+
+		return getCurrentcontext().getExternalContext().getRequestParameterMap().get(key);
+	}
+
+	protected void redirect(String url) {
+
+		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) getCurrentcontext().getApplication()
+				.getNavigationHandler();
+		handler.performNavigation(url + "?faces-redirect=true");
 	}
 }

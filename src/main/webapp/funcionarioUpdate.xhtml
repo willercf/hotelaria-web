@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+		
+			<f:metadata>
+        		<f:event type="preRenderView" listener="#{mbFuncUpdate.loadFuncionario}"/>
+			</f:metadata>
+			
+			<h3>Cadastro de Funcionários</h3>
+			<h:panelGrid columns="3">
+				Id: <b>#{mbFuncUpdate.funcionario.id}</b> <h:inputHidden id="txtId" value="#{mbFuncUpdate.funcionario.id}" /><h:message for="txtId" />
+				Nome: <h:inputText id="txtNome" value="#{mbFuncUpdate.funcionario.nome}" required="true" requiredMessage="#{msg['formulario.nome.required']}" /> <h:message for="txtNome" />
+				Rua: <h:inputText id="txtRua" value="#{mbFuncUpdate.funcionario.endereco.rua}" required="true" requiredMessage="#{msg['formulario.rua.required']}" /> <h:message for="txtRua" />
+				Número: <h:inputText id="txtNumero" value="#{mbFuncUpdate.funcionario.endereco.numero}" required="true" requiredMessage="#{msg['formulario.numero.required']}" /> <h:message for="txtNumero" />
+				Complemento: <h:inputText id="txtComplemento" value="#{mbFuncUpdate.funcionario.endereco.complemento}" />
+				Cep: <h:inputText id="txtCep" value="#{mbFuncUpdate.funcionario.endereco.cep}" required="true" requiredMessage="#{msg['formulario.cep.required']}" /> <h:message for="txtCep" />
+				Bairro: <h:inputText id="txtBairro" value="#{mbFuncUpdate.funcionario.endereco.bairro}" required="true" requiredMessage="#{msg['formulario.bairro.required']}" /> <h:message for="txtBairro" />
+				Cidade: <h:inputText id="txtCidade" value="#{mbFuncUpdate.funcionario.endereco.cidade}" required="true" requiredMessage="#{msg['formulario.cidade.required']}" /> <h:message for="txtCidade" />
+				Estado: <h:inputText id="txtEstado" value="#{mbFuncUpdate.funcionario.endereco.estado}" required="true" requiredMessage="#{msg['formulario.estado.required']}" /> <h:message for="txtEstado" />
+				Telefone: <h:inputText id="txtTelefone" value="#{mbFuncUpdate.funcionario.telefone}" required="true" requiredMessage="#{msg['formulario.telefone.required']}" /> <h:message for="txtTelefone" />
+				Cpf: <h:inputText id="txtCpf" value="#{mbFuncUpdate.funcionario.cpf}" required="true" requiredMessage="#{msg['formulario.cpf.required']}" /> <h:message for="txtCpf" />
+				Login: <h:inputText id="txtLogin" value="#{mbFuncUpdate.funcionario.login}" required="true" requiredMessage="#{msg['formulario.login.required']}" /> <h:message for="txtLogin" />
+				<h:commandButton value="Cadastrar" action="#{mbFuncUpdate.update}" />
+			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<h:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>
