@@ -11,7 +11,9 @@
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
 			<h3>Pesquisa de Funcionários</h3>
-			<div class="messages" style="text-align: center;"><h:messages globalOnly="true" /></div>
+			<div class="messages" style="text-align: center;">
+				<h:messages globalOnly="true" />
+			</div>
 			<h:panelGrid columns="2">
 				Filtros &nbsp;
 				Nome: <h:inputText value="#{mbFuncSearch.funcionario.nome}" />

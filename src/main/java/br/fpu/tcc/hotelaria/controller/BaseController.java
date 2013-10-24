@@ -17,7 +17,7 @@ public abstract class BaseController implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private FacesContext currentContext;
+	// private FacesContext currentContext;
 
 	private ResourceBundle bundle;
 
@@ -42,15 +42,14 @@ public abstract class BaseController implements Serializable {
 		}
 		getCurrentcontext().addMessage(null, facesMessage);
 		getCurrentcontext().getExternalContext().getFlash().setKeepMessages(true);
-		getCurrentcontext().getExternalContext().getFlash().doPostPhaseActions(currentContext);
 	}
 
 	protected FacesContext getCurrentcontext() {
 
-		if (currentContext == null) {
-			currentContext = FacesContext.getCurrentInstance();
-		}
-		return currentContext;
+		// if (currentContext == null) {
+		// currentContext = FacesContext.getCurrentInstance();
+		// }
+		return FacesContext.getCurrentInstance();
 	}
 
 	protected void treatErrorMessage(BoException e, String genericErrorMessage) {
@@ -73,5 +72,10 @@ public abstract class BaseController implements Serializable {
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) getCurrentcontext().getApplication()
 				.getNavigationHandler();
 		handler.performNavigation(url + "?faces-redirect=true");
+	}
+
+	protected void putFlashMessage(String keyMessage) {
+
+		getCurrentcontext().getExternalContext().getFlash().put("rmsg", bundle.getString(keyMessage));
 	}
 }

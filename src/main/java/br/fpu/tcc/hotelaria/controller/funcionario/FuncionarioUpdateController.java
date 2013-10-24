@@ -50,7 +50,6 @@ public class FuncionarioUpdateController extends BaseController {
 			} catch (BoException e) {
 				e.printStackTrace();
 				super.treatErrorMessage(e, BundleConstants.FORMULARIO_EDICAO_ERRO);
-				super.redirect("/funcionarioSearch");
 			}
 		}
 	}
