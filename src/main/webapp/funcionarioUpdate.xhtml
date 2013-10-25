@@ -5,17 +5,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
-		
+
 			<f:metadata>
         		<f:event type="preRenderView" listener="#{mbFuncUpdate.loadFuncionario}"/>
 			</f:metadata>
-			
+
 			<h3>Cadastro de Funcionários</h3>
-			<h:panelGroup rendered="#{not empty funcionario.id}">
+			<h:panelGroup rendered="#{mbFuncUpdate.hasNoError}">
 				<h:panelGrid columns="3">
 					Id: <b>#{mbFuncUpdate.funcionario.id}</b> <h:inputHidden id="txtId" value="#{mbFuncUpdate.funcionario.id}" /><h:message for="txtId" />
 					Nome: <h:inputText id="txtNome" value="#{mbFuncUpdate.funcionario.nome}" required="true" requiredMessage="#{msg['formulario.nome.required']}" /> <h:message for="txtNome" />

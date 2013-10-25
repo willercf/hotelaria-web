@@ -18,6 +18,8 @@ public class FuncionarioUpdateController extends BaseController {
 
 	private Funcionario funcionario = new Funcionario();
 
+	private boolean hasNoError = true;
+
 	public FuncionarioBo getFuncionarioBo() {
 		return funcionarioBo;
 	}
@@ -36,20 +38,30 @@ public class FuncionarioUpdateController extends BaseController {
 		this.funcionario = funcionario;
 	}
 
+	public boolean isHasNoError() {
+		return hasNoError;
+	}
+
 	public void loadFuncionario() {
 
 		if (funcionario == null || funcionario.getId() == null) {
 
 			try {
-				Long idFuncionario = Long.parseLong(super.getQueryStringParam(QueryStringConstants.ID_FUNCIONARIO));
+				Long idFuncionario = Long
+						.parseLong(super
+								.getQueryStringParam(QueryStringConstants.ID_FUNCIONARIO));
 				funcionario = funcionarioBo.findByPrimarykey(idFuncionario);
 
 				if (funcionario == null) {
 					throw new BoException("Funcionário não encontrado.");
 				}
+
+				hasNoError = true;
 			} catch (BoException e) {
 				e.printStackTrace();
-				super.treatErrorMessage(e, BundleConstants.FORMULARIO_EDICAO_ERRO);
+				super.treatErrorMessage(e,
+						BundleConstants.FORMULARIO_EDICAO_ERRO);
+				hasNoError = false;
 			}
 		}
 	}
