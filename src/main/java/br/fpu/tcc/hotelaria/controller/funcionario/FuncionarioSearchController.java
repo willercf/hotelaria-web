@@ -53,7 +53,7 @@ public class FuncionarioSearchController extends BaseController {
 			funcionarios = funcionarioBo.findByFilter(funcionario);
 		} catch (Exception e) {
 			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
+			super.addGlobalMessage(BundleConstants.FORMULARIO_PESQUISA_ERRO, FacesMessage.SEVERITY_ERROR);
 		}
 	}
 

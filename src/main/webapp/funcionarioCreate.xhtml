@@ -14,7 +14,7 @@
 			<p:panelGrid>
 				<f:facet name="header">
 					<p:row>
-						<p:column colspan="3">Cadastro de Funcionários</p:column>
+						<p:column colspan="3">Cadastro de Funcionário</p:column>
 					</p:row>
 				</f:facet>
 
@@ -81,7 +81,7 @@
 				<p:row>
 					<p:column>Cpf:</p:column>
 					<p:column colspan="2">
-						<p:inputMask id="txtCpf" value="#{mbFuncCrete.funcionario.cpf}" maxlength="15" size="20" required="true" requiredMessage="#{msg['formulario.cpf.required']}" mask="999.999.999-99"  />
+						<p:inputMask id="txtCpf" value="#{mbFuncCrete.funcionario.cpf}" maxlength="15" size="20" required="true" requiredMessage="#{msg['formulario.cpf.required']}" mask="999.999.999-99" />
 						<p:message for="txtCpf" />
 					</p:column>
 				</p:row>

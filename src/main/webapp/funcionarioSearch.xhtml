@@ -10,24 +10,43 @@
 	
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
-			<h3>Pesquisa de Funcionários</h3>
+			<h3></h3>
 			<div class="messages" style="text-align: center;">
-				<h:messages globalOnly="true" />
+				<p:messages globalOnly="true" />
 			</div>
-			<h:panelGrid columns="2">
-				Filtros &nbsp;
-				Nome: <h:inputText value="#{mbFuncSearch.funcionario.nome}" />
-				Cpf: <h:inputText value="#{mbFuncSearch.funcionario.cpf}" />
-				Login: <h:inputText value="#{mbFuncSearch.funcionario.login}" />
-				<h:commandButton value="Pesquisar" action="#{mbFuncSearch.search}" />
-			</h:panelGrid>
+			
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="6">Pesquisa de Funcionários</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="6">Filtros</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>Nome:</p:column>
+					<p:column><p:inputText value="#{mbFuncSearch.funcionario.nome}" maxlength="60" size="40" /></p:column>
+					<p:column>Cpf:</p:column>
+					<p:column><p:inputMask value="#{mbFuncSearch.funcionario.cpf}" maxlength="15" size="20" mask="999.999.999-99" /></p:column>
+					<p:column>Login:</p:column>
+					<p:column><p:inputText value="#{mbFuncSearch.funcionario.login}" maxlength="12" size="15" /></p:column>
+				</p:row>
+					
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="6"><p:commandButton value="Pesquisar" actionListener="#{mbFuncSearch.search}" ajax="false" /></p:column>
+					</p:row>
+				</f:facet>			
+			</p:panelGrid>
 			
 			<p:dataTable id="table" value="#{mbFuncSearch.funcionarios}" var="entity"
 				styleClass="order-table"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row"
     			paginator="true"
-    			rows="2">
+    			rows="10">
     			
     			<p:column>
     				<!-- column header -->

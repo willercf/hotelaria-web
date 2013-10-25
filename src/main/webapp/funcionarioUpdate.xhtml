@@ -11,30 +11,111 @@
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
 
-			<f:metadata>
-        		<f:event type="preRenderView" listener="#{mbFuncUpdate.loadFuncionario}"/>
-			</f:metadata>
-
-			<h3>Cadastro de Funcionários</h3>
 			<h:panelGroup rendered="#{mbFuncUpdate.hasNoError}">
-				<h:panelGrid columns="3">
-					Id: <b>#{mbFuncUpdate.funcionario.id}</b> <h:inputHidden id="txtId" value="#{mbFuncUpdate.funcionario.id}" /><h:message for="txtId" />
-					Nome: <h:inputText id="txtNome" value="#{mbFuncUpdate.funcionario.nome}" required="true" requiredMessage="#{msg['formulario.nome.required']}" /> <h:message for="txtNome" />
-					Rua: <h:inputText id="txtRua" value="#{mbFuncUpdate.funcionario.endereco.rua}" required="true" requiredMessage="#{msg['formulario.rua.required']}" /> <h:message for="txtRua" />
-					Número: <h:inputText id="txtNumero" value="#{mbFuncUpdate.funcionario.endereco.numero}" required="true" requiredMessage="#{msg['formulario.numero.required']}" /> <h:message for="txtNumero" />
-					Complemento: <h:inputText id="txtComplemento" value="#{mbFuncUpdate.funcionario.endereco.complemento}" />
-					Cep: <h:inputText id="txtCep" value="#{mbFuncUpdate.funcionario.endereco.cep}" required="true" requiredMessage="#{msg['formulario.cep.required']}" /> <h:message for="txtCep" />
-					Bairro: <h:inputText id="txtBairro" value="#{mbFuncUpdate.funcionario.endereco.bairro}" required="true" requiredMessage="#{msg['formulario.bairro.required']}" /> <h:message for="txtBairro" />
-					Cidade: <h:inputText id="txtCidade" value="#{mbFuncUpdate.funcionario.endereco.cidade}" required="true" requiredMessage="#{msg['formulario.cidade.required']}" /> <h:message for="txtCidade" />
-					Estado: <h:inputText id="txtEstado" value="#{mbFuncUpdate.funcionario.endereco.estado}" required="true" requiredMessage="#{msg['formulario.estado.required']}" /> <h:message for="txtEstado" />
-					Telefone: <h:inputText id="txtTelefone" value="#{mbFuncUpdate.funcionario.telefone}" required="true" requiredMessage="#{msg['formulario.telefone.required']}" /> <h:message for="txtTelefone" />
-					Cpf: <h:inputText id="txtCpf" value="#{mbFuncUpdate.funcionario.cpf}" required="true" requiredMessage="#{msg['formulario.cpf.required']}" /> <h:message for="txtCpf" />
-					Login: <h:inputText id="txtLogin" value="#{mbFuncUpdate.funcionario.login}" required="true" requiredMessage="#{msg['formulario.login.required']}" /> <h:message for="txtLogin" />
-					<h:commandButton value="Cadastrar" action="#{mbFuncUpdate.update}" />
-				</h:panelGrid>
+				<f:metadata>
+	        		<f:event type="preRenderView" listener="#{mbFuncUpdate.loadFuncionario}"/>
+				</f:metadata>
+	
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="3">Edição de Funcionário</p:column>
+						</p:row>
+					</f:facet>
+					
+					<p:row>
+						<p:column>Id:</p:column>
+						<p:column colspan="2">
+							<b>#{mbFuncUpdate.funcionario.id}</b>
+							<h:inputHidden id="txtId" value="#{mbFuncUpdate.funcionario.id}" />
+							<h:message for="txtId" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Nome:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtNome" value="#{mbFuncUpdate.funcionario.nome}" maxlength="60" size="50" required="true" requiredMessage="#{msg['formulario.nome.required']}" />
+							<p:message for="txtNome" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Rua:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtRua" value="#{mbFuncUpdate.funcionario.endereco.rua}" maxlength="60" size="50" required="true" requiredMessage="#{msg['formulario.rua.required']}" />
+							<p:message for="txtRua" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Número:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtNumero" value="#{mbFuncUpdate.funcionario.endereco.numero}" maxlength="8" size="8" required="true" requiredMessage="#{msg['formulario.numero.required']}" />
+							<p:message for="txtNumero" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Complemento:</p:column>
+						<p:column colspan="2"><p:inputText id="txtComplemento" maxlength="20" size="16" value="#{mbFuncUpdate.funcionario.endereco.complemento}" /></p:column>
+					</p:row>
+					<p:row>
+						<p:column>Cep:</p:column>
+						<p:column colspan="2">
+							<p:inputMask id="txtCep" value="#{mbFuncUpdate.funcionario.endereco.cep}" maxlength="9" size="10" required="true" requiredMessage="#{msg['formulario.cep.required']}" mask="99999-999" />
+							<p:message for="txtCep" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Bairro:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtBairro" value="#{mbFuncUpdate.funcionario.endereco.bairro}" maxlength="50" size="45" required="true" requiredMessage="#{msg['formulario.bairro.required']}" />
+							<p:message for="txtBairro" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Cidade:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtCidade" value="#{mbFuncUpdate.funcionario.endereco.cidade}" maxlength="50" size="45" required="true" requiredMessage="#{msg['formulario.cidade.required']}" />
+							<p:message for="txtCidade" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Estado:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtEstado" value="#{mbFuncUpdate.funcionario.endereco.estado}" maxlength="30" size="30" required="true" requiredMessage="#{msg['formulario.estado.required']}" />
+							<p:message for="txtEstado" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Telefone:</p:column>
+						<p:column colspan="2">
+							<p:inputMask id="txtTelefone" value="#{mbFuncUpdate.funcionario.telefone}" maxlength="15" size="20" required="true" requiredMessage="#{msg['formulario.telefone.required']}" mask="(99)9999-9999" />
+							<p:message for="txtTelefone" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Cpf:</p:column>
+						<p:column colspan="2">
+							<p:inputMask id="txtCpf" value="#{mbFuncUpdate.funcionario.cpf}" maxlength="15" size="20" required="true" requiredMessage="#{msg['formulario.cpf.required']}" mask="999.999.999-99" />
+							<p:message for="txtCpf" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Login:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtLogin" value="#{mbFuncUpdate.funcionario.login}" maxlength="12" size="15" required="true" requiredMessage="#{msg['formulario.login.required']}" />
+							<p:message for="txtLogin" />
+						</p:column>
+					</p:row>
+	
+					<f:facet name="footer">
+						<p:row>
+							<p:column colspan="3"><p:commandButton value="Atualizar" action="#{mbFuncUpdate.update}" ajax="false" /></p:column>
+						</p:row>
+					</f:facet>
+				</p:panelGrid>
 			</h:panelGroup>
+
 			<h:panelGrid columns="1">
-				<h:messages globalOnly="true" />
+				<p:messages globalOnly="true" />
 			</h:panelGrid>
 		</ui:define>
 	</ui:composition>
