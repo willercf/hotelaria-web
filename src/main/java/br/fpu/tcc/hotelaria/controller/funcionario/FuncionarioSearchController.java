@@ -3,10 +3,9 @@ package br.fpu.tcc.hotelaria.controller.funcionario;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-
 import br.fpu.tcc.hotelaria.controller.BaseController;
 import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
+import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
@@ -51,9 +50,8 @@ public class FuncionarioSearchController extends BaseController {
 
 		try {
 			funcionarios = funcionarioBo.findByFilter(funcionario);
-		} catch (Exception e) {
-			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FORMULARIO_PESQUISA_ERRO, FacesMessage.SEVERITY_ERROR);
+		} catch (BoException e) {
+			super.treatErrorMessage(e, BundleConstants.FORMULARIO_PESQUISA_ERRO);
 		}
 	}
 
@@ -63,9 +61,8 @@ public class FuncionarioSearchController extends BaseController {
 			funcionarioBo.changeStatus(funcionario);
 			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
 			funcionario = new Funcionario();
-		} catch (Exception e) {
-			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO, FacesMessage.SEVERITY_ERROR);
+		} catch (BoException e) {
+			super.treatErrorMessage(e, BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
 		} finally {
 			search();
 		}

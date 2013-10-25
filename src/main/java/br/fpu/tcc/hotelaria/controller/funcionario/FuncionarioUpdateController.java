@@ -47,9 +47,7 @@ public class FuncionarioUpdateController extends BaseController {
 		if (funcionario == null || funcionario.getId() == null) {
 
 			try {
-				Long idFuncionario = Long
-						.parseLong(super
-								.getQueryStringParam(QueryStringConstants.ID_FUNCIONARIO));
+				Long idFuncionario = Long.parseLong(super.getQueryStringParam(QueryStringConstants.ID_FUNCIONARIO));
 				funcionario = funcionarioBo.findByPrimarykey(idFuncionario);
 
 				if (funcionario == null) {
@@ -58,9 +56,7 @@ public class FuncionarioUpdateController extends BaseController {
 
 				hasNoError = true;
 			} catch (BoException e) {
-				e.printStackTrace();
-				super.treatErrorMessage(e,
-						BundleConstants.FORMULARIO_EDICAO_ERRO);
+				super.treatErrorMessage(e, BundleConstants.FORMULARIO_EDICAO_ERRO);
 				hasNoError = false;
 			}
 		}
@@ -72,12 +68,10 @@ public class FuncionarioUpdateController extends BaseController {
 			funcionarioBo.update(funcionario);
 			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
 			return "/funcionarioSearch?faces-redirect=true";
-		} catch (Exception e) {
-			e.printStackTrace();
-			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
+		} catch (BoException e) {
+			super.treatErrorMessage(e, BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
 		}
 
 		return null;
 	}
-
 }

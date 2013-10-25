@@ -46,9 +46,6 @@ public abstract class BaseController implements Serializable {
 
 	protected FacesContext getCurrentcontext() {
 
-		// if (currentContext == null) {
-		// currentContext = FacesContext.getCurrentInstance();
-		// }
 		return FacesContext.getCurrentInstance();
 	}
 

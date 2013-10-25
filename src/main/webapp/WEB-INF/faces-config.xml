@@ -17,7 +17,7 @@
 	<!-- Funcionário -->
 	<!-- ================================================= -->
 	<managed-bean>
-		<managed-bean-name>mbFuncCrete</managed-bean-name>
+		<managed-bean-name>mbFuncCreate</managed-bean-name>
 		<managed-bean-class>br.fpu.tcc.hotelaria.controller.funcionario.FuncionarioCreateController</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
@@ -58,10 +58,13 @@
 		</managed-property>
 	</managed-bean>
 
+	<!-- ================================================= -->
+	<!-- Cliente -->
+	<!-- ================================================= -->
 	<managed-bean>
-		<managed-bean-name>mbCli</managed-bean-name>
-		<managed-bean-class>br.fpu.tcc.hotelaria.controller.ClienteController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-name>mbCliCreate</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.cliente.ClienteCreateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>clienteBo</property-name>
 			<value>#{clienteBo}</value>
@@ -72,6 +75,37 @@
 		</managed-property>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>mbCliUpdate</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.cliente.ClienteUpdateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>clienteBo</property-name>
+			<value>#{clienteBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>mbCliSearch</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.cliente.ClienteSearchController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>clienteBo</property-name>
+			<value>#{clienteBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<!-- ================================================= -->
+	<!-- Quarto -->
+	<!-- ================================================= -->
 	<managed-bean>
 		<managed-bean-name>mbQuarto</managed-bean-name>
 		<managed-bean-class>br.fpu.tcc.hotelaria.controller.QuartoController</managed-bean-class>
@@ -86,6 +120,9 @@
 		</managed-property>
 	</managed-bean>
 
+	<!-- ================================================= -->
+	<!-- Reserva -->
+	<!-- ================================================= -->
 	<managed-bean>
 		<managed-bean-name>mbReserva</managed-bean-name>
 		<managed-bean-class>br.fpu.tcc.hotelaria.controller.ReservaController</managed-bean-class>

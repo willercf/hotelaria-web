@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			<h3>Cadastro de Clientes</h3>
+			<h:panelGrid columns="3">
+				Id: <b>#{mbCli.cliente.id}</b> <h:inputHidden id="txtId" value="#{mbCli.cliente.id}" /><h:message for="txtId" />
+				Nome: <h:inputText id="txtNome" value="#{mbCli.cliente.nome}" required="true" requiredMessage="#{msg['formulario.nome.required']}" /> <h:message for="txtNome" />
+				Rua: <h:inputText id="txtRua" value="#{mbCli.cliente.endereco.rua}" required="true" requiredMessage="#{msg['formulario.rua.required']}" /> <h:message for="txtRua" />
+				Número: <h:inputText id="txtNumero" value="#{mbCli.cliente.endereco.numero}" required="true" requiredMessage="#{msg['formulario.numero.required']}" /> <h:message for="txtNumero" />
+				Complemento: <h:inputText id="txtComplemento" value="#{mbCli.cliente.endereco.complemento}" />
+				Cep: <h:inputText id="txtCep" value="#{mbCli.cliente.endereco.cep}" required="true" requiredMessage="#{msg['formulario.cep.required']}" /> <h:message for="txtCep" />
+				Bairro: <h:inputText id="txtBairro" value="#{mbCli.cliente.endereco.bairro}" required="true" requiredMessage="#{msg['formulario.bairro.required']}" /> <h:message for="txtBairro" />
+				Cidade: <h:inputText id="txtCidade" value="#{mbCli.cliente.endereco.cidade}" required="true" requiredMessage="#{msg['formulario.cidade.required']}" /> <h:message for="txtCidade" />
+				Estado: <h:inputText id="txtEstado" value="#{mbCli.cliente.endereco.estado}" required="true" requiredMessage="#{msg['formulario.estado.required']}" /> <h:message for="txtEstado" />
+				Telefone: <h:inputText id="txtTelefone" value="#{mbCli.cliente.telefone}" required="true" requiredMessage="#{msg['formulario.telefone.required']}" /> <h:message for="txtTelefone" />
+				Tipo de Pessoa: <h:selectOneRadio id="sorTipoPessoa" value="#{mbCli.cliente.tipoPessoa}" required="true" requiredMessage="#{msg['formulario.tipopessoa.required']}"> <f:selectItems value="#{mbCli.tiposPessoa}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.description}" /> </h:selectOneRadio> <h:message for="sorTipoPessoa" />
+				Cpf/Cnpj: <h:inputText id="txtCpfCnpj" value="#{mbCli.cliente.cpfCnpj}" required="true" requiredMessage="#{msg['formulario.cpfCnpj.required']}" /> <h:message for="txtCpfCnpj" />
+				E-mail: <h:inputText id="txtEmail" value="#{mbCli.cliente.email}" required="true" requiredMessage="#{msg['formulario.email.required']}" /> <h:message for="txtEmail" />
+				<h:commandButton value="Cadastrar" action="#{mbCli.update}" />
+			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<h:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>

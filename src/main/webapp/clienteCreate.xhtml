@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+			
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="3">Cadastro de Cliente</p:column>
+					</p:row>
+				</f:facet>
+				
+				<p:row>
+					<p:column>Nome:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtNome" value="#{mbCliCreate.cliente.nome}" maxlength="60" size="50" required="true" requiredMessage="#{msg['formulario.nome.required']}" />
+						<p:message for="txtNome" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Rua:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtRua" value="#{mbCliCreate.cliente.endereco.rua}" maxlength="60" size="50" required="true" requiredMessage="#{msg['formulario.rua.required']}" />
+						<p:message for="txtRua" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Número:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtNumero" value="#{mbCliCreate.cliente.endereco.numero}" maxlength="8" size="8" required="true" requiredMessage="#{msg['formulario.numero.required']}" />
+						<p:message for="txtNumero" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Complemento:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtComplemento" maxlength="20" size="16" value="#{mbCliCreate.cliente.endereco.complemento}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Cep:</p:column>
+					<p:column colspan="2">
+						<p:inputMask id="txtCep" value="#{mbCliCreate.cliente.endereco.cep}" maxlength="9" size="10" required="true" requiredMessage="#{msg['formulario.cep.required']}" mask="99999-999" />
+						<p:message for="txtCep" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Bairro:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtBairro" value="#{mbCliCreate.cliente.endereco.bairro}" maxlength="50" size="45" required="true" requiredMessage="#{msg['formulario.bairro.required']}" />
+						<p:message for="txtBairro" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Cidade:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtCidade" value="#{mbCliCreate.cliente.endereco.cidade}" maxlength="50" size="45" required="true" requiredMessage="#{msg['formulario.cidade.required']}" />
+						<p:message for="txtCidade" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Estado:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtEstado" value="#{mbCliCreate.cliente.endereco.estado}" maxlength="30" size="30" required="true" requiredMessage="#{msg['formulario.estado.required']}" />
+						<p:message for="txtEstado" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Telefone:</p:column>
+					<p:column colspan="2">
+						<p:inputMask id="txtTelefone" value="#{mbCliCreate.cliente.telefone}" maxlength="15" size="20" required="true" requiredMessage="#{msg['formulario.telefone.required']}" mask="(99)9999-9999" />
+						<p:message for="txtTelefone" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Tipo de Pessoa:</p:column>
+					<p:column colspan="2">
+						<p:selectOneRadio id="sorTipoPessoa" value="#{mbCliCreate.cliente.tipoPessoa}" required="true" requiredMessage="#{msg['formulario.tipopessoa.required']}" onchange="enableMask()" >
+							<f:selectItems value="#{mbCliCreate.tiposPessoa}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.description}" />
+						</p:selectOneRadio>
+						<p:message for="sorTipoPessoa" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Cpf/Cnpj:</p:column>
+					<p:column colspan="2">
+						<p:inputMask id="txtCpfCnpj" value="#{mbCliCreate.cliente.cpfCnpj}" maxlength="19" size="21" required="true" requiredMessage="#{msg['formulario.cpfCnpj.required']}" mask="getMask()" disabled="disableMask()" />
+						<p:message for="txtCpfCnpj" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>E-mail:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtEmail" value="#{mbCliCreate.cliente.email}" maxlength="40" size="35" required="true" requiredMessage="#{msg['formulario.email.required']}" />
+						<p:message for="txtEmail" />
+					</p:column>
+				</p:row>
+				
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="3"><p:commandButton value="Cadastrar" actionListener="#{mbCliCreate.save}" /></p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			
+			<h:panelGrid columns="1">
+				<p:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>
