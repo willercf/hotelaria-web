@@ -8,6 +8,7 @@ import br.fpu.tcc.hotelaria.model.bo.FuncionarioBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
+import br.fpu.tcc.hotelaria.web.QueryStringConstants;
 
 public class FuncionarioSearchController extends BaseController {
 
@@ -62,7 +63,8 @@ public class FuncionarioSearchController extends BaseController {
 			super.addGlobalMessage(BundleConstants.FUNCIONARIO_CADASTRO_SUCESSO);
 			funcionario = new Funcionario();
 		} catch (BoException e) {
-			super.treatErrorMessage(e, BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
+			super.treatErrorMessage(e,
+					BundleConstants.FUNCIONARIO_CADASTRO_ERRO);
 		} finally {
 			search();
 		}
@@ -70,7 +72,9 @@ public class FuncionarioSearchController extends BaseController {
 
 	public String showUpdate() {
 
-		return "/funcionarioUpdate?faces-redirect=true&id_funcionario=" + funcionario.getId();
+		return "/funcionarioUpdate?faces-redirect=true&"
+				+ QueryStringConstants.ID_FUNCIONARIO + "="
+				+ funcionario.getId();
 	}
 
 }

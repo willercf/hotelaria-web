@@ -24,6 +24,11 @@ public class ClienteDaoImpl extends AbstractDao<Cliente, Long> implements
 						MatchMode.ANYWHERE));
 			}
 
+			if (entity.getTipoPessoa() != null) {
+				criteria.add(Restrictions.eq("tipoPessoa",
+						entity.getTipoPessoa()));
+			}
+
 			if (StringUtils.isNotBlank(entity.getCpfCnpj())) {
 				criteria.add(Restrictions.eq("cpfCnpj", entity.getCpfCnpj()));
 			}
@@ -36,5 +41,4 @@ public class ClienteDaoImpl extends AbstractDao<Cliente, Long> implements
 
 		return criteria;
 	}
-
 }

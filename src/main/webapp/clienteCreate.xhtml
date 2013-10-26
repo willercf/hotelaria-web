@@ -10,14 +10,14 @@
 
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
-			
+
 			<p:panelGrid>
 				<f:facet name="header">
 					<p:row>
 						<p:column colspan="3">Cadastro de Cliente</p:column>
 					</p:row>
 				</f:facet>
-				
+
 				<p:row>
 					<p:column>Nome:</p:column>
 					<p:column colspan="2">
@@ -83,8 +83,9 @@
 				<p:row>
 					<p:column>Tipo de Pessoa:</p:column>
 					<p:column colspan="2">
-						<p:selectOneRadio id="sorTipoPessoa" value="#{mbCliCreate.cliente.tipoPessoa}" required="true" requiredMessage="#{msg['formulario.tipopessoa.required']}" onchange="enableMask()" >
+						<p:selectOneRadio id="sorTipoPessoa" value="#{mbCliCreate.cliente.tipoPessoa}" required="true" requiredMessage="#{msg['formulario.tipopessoa.required']}"  >
 							<f:selectItems value="#{mbCliCreate.tiposPessoa}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.description}" />
+							<p:ajax event="change" listener="#{mbCliCreate.changeMask}" update="txtCpfCnpj" />
 						</p:selectOneRadio>
 						<p:message for="sorTipoPessoa" />
 					</p:column>
@@ -92,7 +93,7 @@
 				<p:row>
 					<p:column>Cpf/Cnpj:</p:column>
 					<p:column colspan="2">
-						<p:inputMask id="txtCpfCnpj" value="#{mbCliCreate.cliente.cpfCnpj}" maxlength="19" size="21" required="true" requiredMessage="#{msg['formulario.cpfCnpj.required']}" mask="getMask()" disabled="disableMask()" />
+						<p:inputMask id="txtCpfCnpj" value="#{mbCliCreate.cliente.cpfCnpj}" maxlength="19" size="21" required="true" requiredMessage="#{msg['formulario.cpfCnpj.required']}" mask="#{mbCliCreate.cpfCnpjMask}" disabled="#{mbCliCreate.cliente.tipoPessoa == null}" />
 						<p:message for="txtCpfCnpj" />
 					</p:column>
 				</p:row>
@@ -103,14 +104,14 @@
 						<p:message for="txtEmail" />
 					</p:column>
 				</p:row>
-				
+
 				<f:facet name="footer">
 					<p:row>
-						<p:column colspan="3"><p:commandButton value="Cadastrar" actionListener="#{mbCliCreate.save}" /></p:column>
+						<p:column colspan="3"><p:commandButton value="Cadastrar" actionListener="#{mbCliCreate.save}" ajax="false" /></p:column>
 					</p:row>
 				</f:facet>
 			</p:panelGrid>
-			
+
 			<h:panelGrid columns="1">
 				<p:messages globalOnly="true" />
 			</h:panelGrid>
