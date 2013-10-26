@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="3">Cadastro de Quarto</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>Número:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtNumero" value="#{mbQuartoCreate.quarto.numero}" maxlength="5" size="5" required="true" requiredMessage="#{msg['formulario.numero.required']}" />
+						<h:message for="txtNumero" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>Andar:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtAndar" value="#{mbQuartoCreate.quarto.andar}" maxlength="4" size="5" required="true" requiredMessage="#{msg['formulario.andar.required']}" />
+						<h:message for="txtAndar" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>Preço Diária:</p:column>
+					<p:column colspan="2">
+						<p:inputText id="txtPrecoDiaria" value="#{mbQuartoCreate.quarto.precoDiaria}" maxlength="8" size="20" required="true" requiredMessage="#{msg['formulario.precoDiaria.required']}" />
+						<h:message for="txtPrecoDiaria" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>Categoria:</p:column>
+					<p:column colspan="2">
+						<p:selectOneRadio id="sorCategoria" value="#{mbQuartoCreate.quarto.categoria}" required="true" requiredMessage="#{msg['formulario.categoria.required']}">
+							<f:selectItems value="#{mbQuartoCreate.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+						</p:selectOneRadio> <h:message for="sorCategoria" />
+					</p:column>
+				</p:row>
+
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="3"><p:commandButton value="Cadastrar" actionListener="#{mbQuartoCreate.save}" ajax="false" /></p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+
+			<h:panelGrid columns="1">
+				<p:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>

@@ -88,7 +88,7 @@
 			<value>#{msg}</value>
 		</managed-property>
 	</managed-bean>
-	
+
 	<managed-bean>
 		<managed-bean-name>mbCliSearch</managed-bean-name>
 		<managed-bean-class>br.fpu.tcc.hotelaria.controller.cliente.ClienteSearchController</managed-bean-class>
@@ -107,9 +107,37 @@
 	<!-- Quarto -->
 	<!-- ================================================= -->
 	<managed-bean>
-		<managed-bean-name>mbQuarto</managed-bean-name>
-		<managed-bean-class>br.fpu.tcc.hotelaria.controller.QuartoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-name>mbQuartoCreate</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.quarto.QuartoCreateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>quartoBo</property-name>
+			<value>#{quartoBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>mbQuartoUpdate</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.quarto.QuartoUpdateController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>quartoBo</property-name>
+			<value>#{quartoBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>mbQuartoSearch</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.quarto.QuartoSearchController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>quartoBo</property-name>
 			<value>#{quartoBo}</value>
@@ -145,6 +173,9 @@
 		</managed-property>
 	</managed-bean>
 
+	<!-- ================================================= -->
+	<!-- CONVERTERS -->
+	<!-- ================================================= -->
 	<converter id="clienteConverter">
 		<converter-id>clienteConverter</converter-id>
 		<converter-class>br.fpu.tcc.hotelaria.controller.converter.ClienteConverter</converter-class>

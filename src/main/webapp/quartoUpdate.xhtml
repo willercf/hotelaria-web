@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+
+			<h:panelGroup rendered="#{mbQuartoUpdate.hasNoError}">
+				<f:metadata>
+	        		<f:event type="preRenderView" listener="#{mbQuartoUpdate.loadQuarto}"/>
+				</f:metadata>
+
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="3">Edição de Quarto</p:column>
+						</p:row>
+					</f:facet>
+
+					<p:row>
+						<p:column>Id:</p:column>
+						<p:column colspan="2">
+							<b>#{mbQuartoUpdate.quarto.id}</b> <h:inputHidden id="txtId" value="#{mbQuartoUpdate.quarto.id}" />
+							<h:message for="txtId" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Número:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtNumero" value="#{mbQuartoUpdate.quarto.numero}" maxlength="5" size="5" required="true" requiredMessage="#{msg['formulario.numero.required']}" />
+							<h:message for="txtNumero" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Andar:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtAndar" value="#{mbQuartoUpdate.quarto.andar}" maxlength="4" size="5" required="true" requiredMessage="#{msg['formulario.andar.required']}" />
+							<h:message for="txtAndar" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Preço Diária:</p:column>
+						<p:column colspan="2">
+							<p:inputText id="txtPrecoDiaria" value="#{mbQuartoUpdate.quarto.precoDiaria}" maxlength="8" size="20" required="true" requiredMessage="#{msg['formulario.precoDiaria.required']}" />
+							<h:message for="txtPrecoDiaria" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>Categoria:</p:column>
+						<p:column colspan="2">
+							<p:selectOneRadio id="sorCategoria" value="#{mbQuartoUpdate.quarto.categoria}" required="true" requiredMessage="#{msg['formulario.categoria.required']}">
+								<f:selectItems value="#{mbQuartoUpdate.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+							</p:selectOneRadio> <h:message for="sorCategoria" />
+						</p:column>
+					</p:row>
+
+					<f:facet name="footer">
+						<p:row>
+							<p:column colspan="3"><p:commandButton value="Atualizar" action="#{mbQuartoUpdate.update}" ajax="false" /></p:column>
+						</p:row>
+					</f:facet>
+				</p:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGrid columns="1">
+				<p:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</html>
