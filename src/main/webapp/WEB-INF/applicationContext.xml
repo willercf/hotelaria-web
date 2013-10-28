@@ -29,6 +29,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="checkInDao" class="br.fpu.tcc.hotelaria.model.dao.impl.CheckInDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="checkOutDao" class="br.fpu.tcc.hotelaria.model.dao.impl.CheckOutDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 
 	<!-- ==================================================== -->
 	<!-- Beans Declarations - BO -->

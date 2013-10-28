@@ -32,6 +32,8 @@ public class Reserva implements Serializable {
 	private Date dataInicio;
 	private Date dataFim;
 	private StatusQuarto statusQuarto;
+	private CheckIn checkIn;
+	private CheckOut checkOut;
 
 	public Reserva() {
 		super();
@@ -110,6 +112,26 @@ public class Reserva implements Serializable {
 
 	public void setStatusQuarto(StatusQuarto statusQuarto) {
 		this.statusQuarto = statusQuarto;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_reserva")
+	public CheckIn getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(CheckIn checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_reserva")
+	public CheckOut getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(CheckOut checkOut) {
+		this.checkOut = checkOut;
 	}
 
 	@Override

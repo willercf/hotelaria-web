@@ -218,6 +218,31 @@
 	</managed-bean>
 
 	<!-- ================================================= -->
+	<!-- CheckIn -->
+	<!-- ================================================= -->
+	<managed-bean>
+		<managed-bean-name>mbCheckIn</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.reserva.CheckInController</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>reservaBo</property-name>
+			<value>#{reservaBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>clienteBo</property-name>
+			<value>#{clienteBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>quartoBo</property-name>
+			<value>#{quartoBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<!-- ================================================= -->
 	<!-- CONVERTERS -->
 	<!-- ================================================= -->
 	<converter id="clienteConverter">
