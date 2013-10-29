@@ -118,7 +118,11 @@
 
 					<f:facet name="footer">
 						<p:row>
-							<p:column colspan="6"><p:commandButton value="Cadastrar" action="#{mbReservaUpdate.update}" ajax="false" /></p:column>
+							<p:column colspan="5"><p:commandButton value="Cadastrar" action="#{mbReservaUpdate.update}" ajax="false" /></p:column>
+							<p:column>
+								<h:outputText value="Cancelar Reserva: " />
+								<p:selectBooleanCheckbox value="#{mbReservaUpdate.cancelReserva}" />
+							</p:column>
 						</p:row>
 					</f:facet>
 				</p:panelGrid>

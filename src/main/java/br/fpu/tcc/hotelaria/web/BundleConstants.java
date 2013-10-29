@@ -32,6 +32,10 @@ public class BundleConstants {
 
 	public static final String CHECK_IN_CADASTRO_ERRO = "checkin.cadastro.erro";
 
+	public static final String CHECK_OUT_CADASTRO_SUCESSO = "checkout.cadastro.sucesso";
+
+	public static final String CHECK_OUT_CADASTRO_ERRO = "checkout.cadastro.erro";
+
 	public static final String FORMULARIO_MASK_CPF = "formulario.mask.cpf";
 
 	public static final String FORMULARIO_MASK_CNPJ = "formulario.mask.cnpj";

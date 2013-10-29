@@ -10,14 +10,16 @@
 
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
-			<div class="messages" style="text-align: center;">
-				<p:messages globalOnly="true" />
-			</div>
+			<h:panelGroup id="divMessages">
+				<div class="messages" style="text-align: center;">
+					<p:messages globalOnly="true" />
+				</div>
+			</h:panelGroup>
 
 			<p:panelGrid >
 				<f:facet name="header">
 					<p:row>
-						<p:column colspan="6">Pesquisa de Reservas</p:column>
+						<p:column colspan="6">Check-Out</p:column>
 					</p:row>
 					<p:row>
 						<p:column colspan="6">Filtros</p:column>
@@ -27,39 +29,39 @@
 				<p:row>
 					<p:column>Cliente:</p:column>
 					<p:column colspan="3">
-						<p:autoComplete id="txtCliente" value="#{mbReservaSearch.reserva.cliente}"
-							completeMethod="#{mbReservaSearch.findClienteByName}"
+						<p:autoComplete id="txtCliente" value="#{mbCheckOut.reserva.cliente}"
+							completeMethod="#{mbCheckOut.findClienteByName}"
 							var="c" itemLabel="#{c.nome}" itemValue="#{c}"
 							converter="clienteConverter" forceSelection="true"
 							maxlength="60" size="50" />
 					</p:column>
-					<p:column>Data Início: <p:calendar id="txtDataInicio" value="#{mbReservaSearch.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" /></p:column>
-					<p:column>Data Fim: <p:calendar id="txtDataFim" value="#{mbReservaSearch.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" /></p:column>
+					<p:column>Data Início: <p:calendar id="txtDataInicio" value="#{mbCheckOut.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" /></p:column>
+					<p:column>Data Fim: <p:calendar id="txtDataFim" value="#{mbCheckOut.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" /></p:column>
 				</p:row>
 				<p:row>
 					<p:column colspan="6" style="text-align: center;">Quarto</p:column>
 				</p:row>
 				<p:row>
 					<p:column>Número:</p:column>
-					<p:column><p:inputText id="txtNumero" value="#{mbReservaSearch.reserva.quarto.numero}" maxlength="5" size="5" /></p:column>
+					<p:column><p:inputText id="txtNumero" value="#{mbCheckOut.reserva.quarto.numero}" maxlength="5" size="5" /></p:column>
 					<p:column>Andar:</p:column>
-					<p:column><p:inputText id="txtAndar" value="#{mbReservaSearch.reserva.quarto.andar}" maxlength="4" size="5" /></p:column>
+					<p:column><p:inputText id="txtAndar" value="#{mbCheckOut.reserva.quarto.andar}" maxlength="4" size="5" /></p:column>
 					<p:column>Catetoria:</p:column>
 					<p:column>
-						<p:selectOneRadio id="sorCategoria" value="#{mbReservaSearch.reserva.quarto.categoria}" >
-							<f:selectItems value="#{mbReservaSearch.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
+						<p:selectOneRadio id="sorCategoria" value="#{mbCheckOut.reserva.quarto.categoria}" >
+							<f:selectItems value="#{mbCheckOut.categorias}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.description}" />
 						</p:selectOneRadio>
 					</p:column>
 				</p:row>
 
 				<f:facet name="footer">
 					<p:row>
-						<p:column colspan="6"><p:commandButton value="Pesquisar" actionListener="#{mbReservaSearch.search}" ajax="false" /></p:column>
+						<p:column colspan="6"><p:commandButton value="Pesquisar" actionListener="#{mbCheckOut.search}" ajax="false" /></p:column>
 					</p:row>
 				</f:facet>
 			</p:panelGrid>
 
-			<p:dataTable id="table" value="#{mbReservaSearch.reservas}" var="entity"
+			<p:dataTable id="table" value="#{mbCheckOut.reservas}" var="entity"
     			paginator="true"
     			rows="10">
 
@@ -124,12 +126,20 @@
     			</p:column>
 
     			<p:column>
-    				<p:commandLink value="Editar" action="#{mbReservaSearch.showUpdate}">
-    					<f:setPropertyActionListener value="#{entity}" target="#{mbReservaSearch.reserva}" />
+    				<p:commandLink value="Fazer Check-Out" oncomplete="confirmCheckOut.show()" >
+    					<f:setPropertyActionListener value="#{entity}" target="#{mbCheckOut.reserva}" />
     				</p:commandLink>
     			</p:column>
 
 			</p:dataTable>
+			
+			<p:confirmDialog widgetVar="confirmCheckOut" id="confirmCheckOut" header="Confirmação" message="#{msg['formulario.confirm.checkout']}"
+                     width="400" showEffect="bounce" modal="true" closable="false" severity="alert">
+		        <h:panelGroup layout="block" style="text-align: right">
+		            <p:commandButton value="Sim" action="#{mbCheckOut.registerCheckOut}" oncomplete="confirmCheckOut.hide();" update="divMessages,table" />
+		            <p:commandButton value="Não" oncomplete="confirmCheckOut.hide();" />
+		        </h:panelGroup>
+		    </p:confirmDialog>
 		</ui:define>
 	</ui:composition>
 

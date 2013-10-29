@@ -7,7 +7,7 @@ import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 
-public class CheckInController extends ReservaAbstractController {
+public class CheckOutController extends ReservaAbstractController {
 
 	/**
 	 *
@@ -26,20 +26,20 @@ public class CheckInController extends ReservaAbstractController {
 	public void search() {
 
 		try {
-			reservas = reservaBo.findForCheckIn(reserva);
+			reservas = reservaBo.findForCheckOut(reserva);
 		} catch (BoException e) {
 			super.treatErrorMessage(e, BundleConstants.FORMULARIO_PESQUISA_ERRO);
 		}
 	}
 
-	public void registerCheckIn() {
+	public void registerCheckOut() {
 
 		try {
-			reservaBo.registerCheckIn(reserva);
-			super.addGlobalMessage(BundleConstants.CHECK_IN_CADASTRO_SUCESSO);
+			reservaBo.registerCheckOut(reserva);
+			super.addGlobalMessage(BundleConstants.CHECK_OUT_CADASTRO_SUCESSO);
 			search();
 		} catch (BoException e) {
-			super.treatErrorMessage(e, BundleConstants.CHECK_IN_CADASTRO_ERRO);
+			super.treatErrorMessage(e, BundleConstants.CHECK_OUT_CADASTRO_ERRO);
 		}
 	}
 

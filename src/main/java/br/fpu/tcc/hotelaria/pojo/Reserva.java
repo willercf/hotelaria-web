@@ -115,8 +115,9 @@ public class Reserva implements Serializable {
 		this.statusReserva = statusReserva;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_reserva")
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_reserva")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "reserva")
 	public CheckIn getCheckIn() {
 		return checkIn;
 	}
@@ -125,8 +126,9 @@ public class Reserva implements Serializable {
 		this.checkIn = checkIn;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_reserva")
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_reserva")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "reserva")
 	public CheckOut getCheckOut() {
 		return checkOut;
 	}

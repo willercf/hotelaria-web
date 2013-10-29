@@ -1,5 +1,6 @@
 package br.fpu.tcc.hotelaria.controller.reserva;
 
+import br.fpu.tcc.hotelaria.enums.StatusReserva;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
@@ -14,16 +15,25 @@ public class ReservaUpdateController extends ReservaAbstractController {
 
 	private boolean hasNoError = true;
 
+	private boolean cancelReserva = false;
+
 	public boolean isHasNoError() {
 		return hasNoError;
+	}
+
+	public boolean isCancelReserva() {
+		return cancelReserva;
+	}
+
+	public void setCancelReserva(boolean cancelReserva) {
+		this.cancelReserva = cancelReserva;
 	}
 
 	public void loadReserva() {
 
 		if (reserva == null || reserva.getId() == null) {
 			try {
-				Long idReserva = Long.parseLong(super
-						.getQueryStringParam(QueryStringConstants.ID_RESERVA));
+				Long idReserva = Long.parseLong(super.getQueryStringParam(QueryStringConstants.ID_RESERVA));
 				reserva = reservaBo.findByPrimarykey(idReserva);
 
 				if (reserva == null) {
@@ -34,8 +44,7 @@ public class ReservaUpdateController extends ReservaAbstractController {
 
 				hasNoError = true;
 			} catch (BoException e) {
-				super.treatErrorMessage(e,
-						BundleConstants.FORMULARIO_EDICAO_ERRO);
+				super.treatErrorMessage(e, BundleConstants.FORMULARIO_EDICAO_ERRO);
 				hasNoError = false;
 			}
 		}
@@ -45,6 +54,9 @@ public class ReservaUpdateController extends ReservaAbstractController {
 
 		try {
 			reserva.setFuncionario(getAuthenticatedFuncionario());
+			if (isCancelReserva()) {
+				reserva.setStatusReserva(StatusReserva.CANCELED);
+			}
 			reservaBo.update(reserva);
 			super.addGlobalMessage(BundleConstants.RESERVA_CADASTRO_SUCESSO);
 			return "/reservaSearch?faces-redirect=true";
