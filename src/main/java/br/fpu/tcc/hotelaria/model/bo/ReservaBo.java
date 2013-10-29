@@ -10,4 +10,6 @@ public interface ReservaBo extends IBaseBo<Reserva, Long> {
 	List<Reserva> findForCheckIn(Reserva entity) throws BoException;
 
 	List<Reserva> findForCheckOut(Reserva entity) throws BoException;
+
+	void registerCheckIn(Reserva entity) throws BoException;
 }

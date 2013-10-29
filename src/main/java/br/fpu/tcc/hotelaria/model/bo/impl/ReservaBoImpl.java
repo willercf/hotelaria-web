@@ -1,10 +1,11 @@
 package br.fpu.tcc.hotelaria.model.bo.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import br.fpu.tcc.hotelaria.enums.StatusQuarto;
+import br.fpu.tcc.hotelaria.enums.StatusReserva;
 import br.fpu.tcc.hotelaria.model.bo.AbstractBo;
 import br.fpu.tcc.hotelaria.model.bo.ReservaBo;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
@@ -12,6 +13,7 @@ import br.fpu.tcc.hotelaria.model.dao.CheckInDao;
 import br.fpu.tcc.hotelaria.model.dao.CheckOutDao;
 import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
+import br.fpu.tcc.hotelaria.pojo.CheckIn;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 import br.fpu.tcc.hotelaria.utils.DateUtil;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
@@ -68,7 +70,7 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements ReservaB
 
 		DateUtil.applyTimeDefaultReserva(entity);
 		validate(entity);
-		entity.setStatusQuarto(StatusQuarto.RESERVED);
+		entity.setStatusReserva(StatusReserva.RESERVED);
 
 		return super.save(entity);
 	}
@@ -102,6 +104,25 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements ReservaB
 
 		DateUtil.applyTimeDefaultReserva(entity);
 		return reservaDao.findForCheckOut(entity);
+	}
+
+	public void registerCheckIn(Reserva entity) throws BoException {
+
+		try {
+
+			entity = findByPrimarykey(entity.getId());
+			entity.setStatusReserva(StatusReserva.CHECK_IN);
+
+			CheckIn checkIn = new CheckIn();
+			checkIn.setReserva(entity);
+			checkIn.setDataEntrada(Calendar.getInstance().getTime());
+
+			reservaDao.update(entity);
+			checkInDao.save(checkIn);
+		} catch (Exception e) {
+			throw new BoException(e);
+		}
+
 	}
 
 }

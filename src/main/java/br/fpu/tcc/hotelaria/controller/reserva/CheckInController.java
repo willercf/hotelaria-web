@@ -38,9 +38,15 @@ public class CheckInController extends ReservaAbstractController {
 		return "/reservaUpdate?faces-redirect=true&" + QueryStringConstants.ID_RESERVA + "=" + reserva.getId();
 	}
 
-	public void makeCheckIn() {
+	public void registerCheckIn() {
 
-		super.addGlobalMessage(BundleConstants.CHECK_IN_CADASTRO_SUCESSO);
+		try {
+			reservaBo.registerCheckIn(reserva);
+			super.addGlobalMessage(BundleConstants.CHECK_IN_CADASTRO_SUCESSO);
+			search();
+		} catch (BoException e) {
+			super.treatErrorMessage(e, BundleConstants.CHECK_IN_CADASTRO_ERRO);
+		}
 	}
 
 }

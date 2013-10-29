@@ -27,7 +27,9 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 	public T findByPrimarykey(PK pk) throws PersistenceException {
 
 		try {
-			return (T) getSession().get(getPersistentClass(), pk);
+			T t = (T) getSession().get(getPersistentClass(), pk);
+			closeSession();
+			return t;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
@@ -38,7 +40,9 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 	public List<T> findAll() throws PersistenceException {
 
 		try {
-			return getHibernateTemplate().loadAll(getPersistentClass());
+			List<T> result = getHibernateTemplate().loadAll(getPersistentClass());
+			closeSession();
+			return result;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
@@ -48,7 +52,9 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 	public PK save(T entity) throws PersistenceException {
 
 		try {
-			return (PK) getHibernateTemplate().save(entity);
+			PK pk = (PK) getHibernateTemplate().save(entity);
+			closeSession();
+			return pk;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
@@ -67,6 +73,7 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 
 		try {
 			getHibernateTemplate().saveOrUpdate(entity);
+			closeSession();
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
@@ -77,11 +84,17 @@ public abstract class AbstractDao<T, PK extends Serializable> extends HibernateD
 
 		try {
 			Criteria criteria = createCriteria(entity);
-			return (List<T>) criteria.list();
+			List<T> result = criteria.list();
+			closeSession();
+			return result;
 		} catch (Exception e) {
 			throw new PersistenceException(e);
 		}
 	}
 
 	protected abstract Criteria createCriteria(T entity);
+
+	private void closeSession() {
+		getSession().close();
+	}
 }

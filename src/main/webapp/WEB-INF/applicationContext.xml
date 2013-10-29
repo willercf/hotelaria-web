@@ -55,6 +55,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<bean id="reservaBo" class="br.fpu.tcc.hotelaria.model.bo.impl.ReservaBoImpl">
 		<property name="reservaDao" ref="reservaDao" />
+		<property name="checkInDao" ref="checkInDao" />
+		<property name="checkOutDao" ref="checkOutDao" />
 	</bean>
 
 </beans>

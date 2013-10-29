@@ -14,8 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import br.fpu.tcc.hotelaria.enums.StatusQuarto;
+import br.fpu.tcc.hotelaria.enums.StatusReserva;
 
 @Entity
 @Table(name = "tb_reserva")
@@ -31,7 +32,7 @@ public class Reserva implements Serializable {
 	private Quarto quarto;
 	private Date dataInicio;
 	private Date dataFim;
-	private StatusQuarto statusQuarto;
+	private StatusReserva statusReserva;
 	private CheckIn checkIn;
 	private CheckOut checkOut;
 
@@ -106,12 +107,12 @@ public class Reserva implements Serializable {
 
 	@Column(name = "status", nullable = false)
 	@Enumerated(value = EnumType.ORDINAL)
-	public StatusQuarto getStatusQuarto() {
-		return statusQuarto;
+	public StatusReserva getStatusReserva() {
+		return statusReserva;
 	}
 
-	public void setStatusQuarto(StatusQuarto statusQuarto) {
-		this.statusQuarto = statusQuarto;
+	public void setStatusReserva(StatusReserva statusReserva) {
+		this.statusReserva = statusReserva;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -132,6 +133,11 @@ public class Reserva implements Serializable {
 
 	public void setCheckOut(CheckOut checkOut) {
 		this.checkOut = checkOut;
+	}
+
+	@Transient
+	public boolean isDisableEdit() {
+		return !StatusReserva.RESERVED.equals(statusReserva);
 	}
 
 	@Override

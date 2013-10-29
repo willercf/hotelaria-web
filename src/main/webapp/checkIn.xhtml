@@ -122,7 +122,7 @@
     				<!-- column header -->
     				<f:facet name="header">Status</f:facet>
     				<!-- row record -->
-    				#{entity.statusQuarto.description}
+    				#{entity.statusReserva.description}
     			</p:column>
 
     			<p:column>
@@ -136,7 +136,7 @@
 			<p:confirmDialog widgetVar="confirmCheckIn" id="confirmCheckIn" header="Confirmação" message="#{msg['formulario.confirm.checkin']}"
                      width="400" showEffect="bounce" modal="true" closable="false" severity="alert">
 		        <h:panelGroup layout="block" style="text-align: right">
-		            <p:commandButton value="Sim" action="#{mbCheckIn.makeCheckIn}" oncomplete="confirmCheckIn.hide();" update="divMessages,table" />
+		            <p:commandButton value="Sim" action="#{mbCheckIn.registerCheckIn}" oncomplete="confirmCheckIn.hide();" update="divMessages,table" />
 		            <p:commandButton value="Não" oncomplete="confirmCheckIn.hide();" />
 		        </h:panelGroup>
 		    </p:confirmDialog>

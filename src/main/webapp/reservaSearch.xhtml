@@ -120,11 +120,11 @@
     				<!-- column header -->
     				<f:facet name="header">Status</f:facet>
     				<!-- row record -->
-    				#{entity.statusQuarto.description}
+    				#{entity.statusReserva.description}
     			</p:column>
 
     			<p:column>
-    				<p:commandLink value="Editar" action="#{mbReservaSearch.showUpdate}">
+    				<p:commandLink value="Editar" action="#{mbReservaSearch.showUpdate}" disabled="#{entity.disableEdit}">
     					<f:setPropertyActionListener value="#{entity}" target="#{mbReservaSearch.reserva}" />
     				</p:commandLink>
     			</p:column>

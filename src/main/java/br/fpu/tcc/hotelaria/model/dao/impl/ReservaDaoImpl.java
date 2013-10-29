@@ -4,17 +4,28 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import br.fpu.tcc.hotelaria.enums.StatusQuarto;
+import br.fpu.tcc.hotelaria.enums.StatusReserva;
 import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
 import br.fpu.tcc.hotelaria.persistence.AbstractDao;
+import br.fpu.tcc.hotelaria.persistence.exception.PersistenceException;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 
 public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements ReservaDao {
+
+	@Override
+	public Reserva findByPrimarykey(Long pk) throws PersistenceException {
+		Reserva entity = super.findByPrimarykey(pk);
+		Hibernate.initialize(entity.getCliente());
+		Hibernate.initialize(entity.getFuncionario());
+		Hibernate.initialize(entity.getQuarto());
+		return entity;
+	}
 
 	@Override
 	protected Criteria createCriteria(Reserva entity) {
@@ -103,7 +114,7 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements Reserv
 			}
 		}
 
-		criteria.add(Restrictions.eq("statusQuarto", StatusQuarto.RESERVED));
+		criteria.add(Restrictions.eq("statusReserva", StatusReserva.RESERVED));
 
 		List<Reserva> result = (List<Reserva>) criteria.list();
 		return result;
@@ -142,9 +153,10 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements Reserv
 			}
 		}
 
-		criteria.add(Restrictions.eq("statusQuarto", StatusQuarto.OCCUPIED));
+		criteria.add(Restrictions.eq("statusReserva", StatusReserva.CHECK_IN));
 
 		List<Reserva> result = (List<Reserva>) criteria.list();
 		return result;
 	}
+
 }
