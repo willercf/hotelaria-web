@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+		<ui:define name="body">
+
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="3">Alterar Senha</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>Senha antiga:</p:column>
+					<p:column colspan="2">
+						<p:password id="txtSenhaAntiga" value="#{mbFuncUpdate.funcionario.senha}" maxlength="12" size="15" required="true" requiredMessage="#{msg['formulario.senha.required']}" />
+						<p:message for="txtLogin" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Nova Senha:</p:column>
+					<p:column colspan="2">
+						<p:password id="txtSenha" value="#{mbFuncUpdate.funcionario.senha}" maxlength="12" size="15" required="true" requiredMessage="#{msg['formulario.senha.required']}" />
+						<p:message for="txtSenha" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>Confirmação Senha:</p:column>
+					<p:column colspan="2">
+						<p:password id="txtConfirmacaoSenha" value="#{mbFuncUpdate.funcionario.confirmacaoSenha}" maxlength="12" size="15" required="true" requiredMessage="#{msg['formulario.confirmacaoSenha.required']}" />
+						<p:message for="txtConfirmacaoSenha" />
+					</p:column>
+				</p:row>
+
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="3"><p:commandButton value="Alterar" actionListener="#{mbFuncUpdate.changePassword}" ajax="false" /></p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			
+		</ui:define>
+	</ui:composition>
+
+</html>

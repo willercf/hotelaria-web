@@ -14,6 +14,23 @@
 	</application>
 
 	<!-- ================================================= -->
+	<!-- Login -->
+	<!-- ================================================= -->
+	<managed-bean>
+		<managed-bean-name>mbLogin</managed-bean-name>
+		<managed-bean-class>br.fpu.tcc.hotelaria.controller.LoginController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>funcionarioBo</property-name>
+			<value>#{funcionarioBo}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>bundle</property-name>
+			<value>#{msg}</value>
+		</managed-property>
+	</managed-bean>
+
+	<!-- ================================================= -->
 	<!-- Funcionário -->
 	<!-- ================================================= -->
 	<managed-bean>

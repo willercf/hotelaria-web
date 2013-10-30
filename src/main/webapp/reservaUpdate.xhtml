@@ -30,7 +30,7 @@
 								completeMethod="#{mbReservaUpdate.findClienteByName}"
 								var="c" itemLabel="#{c.nome}" itemValue="#{c}"
 								converter="clienteConverter" forceSelection="true"
-								required="true" requiredMessage="#{msg['forumulario.cliente.required']}"
+								required="true" requiredMessage="#{msg['formulario.cliente.required']}"
 								maxlength="60" size="50" />
 
 							<h:message for="txtCliente" />
@@ -40,11 +40,11 @@
 					<p:row>
 						<p:column>Data Início:</p:column>
 						<p:column colspan="2">
-							<p:calendar id="txtDataInicio" value="#{mbReservaUpdate.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" />
+							<p:calendar id="txtDataInicio" value="#{mbReservaUpdate.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['formulario.dataInicio.required']}" /> <h:message for="txtDataInicio" />
 						</p:column>
 						<p:column>Data Fim:</p:column>
 						<p:column colspan="2">
-							<p:calendar id="txtDataFim" value="#{mbReservaUpdate.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" />
+							<p:calendar id="txtDataFim" value="#{mbReservaUpdate.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['formulario.dataFim.required']}" /> <h:message for="txtDataFim" />
 						</p:column>
 					</p:row>
 
@@ -128,10 +128,6 @@
 				</p:panelGrid>
 
 			</h:panelGroup>
-
-			<h:panelGrid columns="1">
-				<p:messages globalOnly="true" />
-			</h:panelGrid>
 
 		</ui:define>
 	</ui:composition>

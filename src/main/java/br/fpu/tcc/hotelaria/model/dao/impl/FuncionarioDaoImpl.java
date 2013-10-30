@@ -10,13 +10,21 @@ import br.fpu.tcc.hotelaria.persistence.AbstractDao;
 import br.fpu.tcc.hotelaria.persistence.exception.PersistenceException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 
-public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long>
-		implements FuncionarioDao {
+public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implements FuncionarioDao {
 
-	public void changeStatus(Funcionario funcionario)
-			throws PersistenceException {
+	public void changeStatus(Funcionario funcionario) throws PersistenceException {
 
 		super.update(funcionario);
+	}
+
+	public Funcionario authenticate(String login, String senha) {
+
+		Criteria criteria = getSession().createCriteria(getPersistentClass());
+		criteria.add(Restrictions.eq("login", login));
+		criteria.add(Restrictions.eq("senha", senha));
+
+		Funcionario funcionario = (Funcionario) criteria.uniqueResult();
+		return funcionario;
 	}
 
 	@Override
@@ -27,8 +35,7 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long>
 		if (entity != null) {
 
 			if (StringUtils.isNotBlank(entity.getNome())) {
-				criteria.add(Restrictions.like("nome", entity.getNome(),
-						MatchMode.ANYWHERE));
+				criteria.add(Restrictions.like("nome", entity.getNome(), MatchMode.ANYWHERE));
 			}
 
 			if (StringUtils.isNotBlank(entity.getCpf())) {
@@ -36,8 +43,7 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long>
 			}
 
 			if (StringUtils.isNotBlank(entity.getLogin())) {
-				criteria.add(Restrictions.like("login", entity.getLogin(),
-						MatchMode.ANYWHERE));
+				criteria.add(Restrictions.like("login", entity.getLogin(), MatchMode.ANYWHERE));
 			}
 		}
 		return criteria;

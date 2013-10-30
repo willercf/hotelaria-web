@@ -14,15 +14,34 @@
 	</h:head>
 
 	<h:body>
-		<!-- <c:set target="#{flash}" property="keepMessages"  value="true"/> -->
+	
+		<f:metadata>
+			<f:event listener="#{mbLogin.verifyAuthentication}" type="preRenderView" />
+		</f:metadata>
+		
 		<div id="hedaer">
 			<h:form>
+				<p:panelGrid style="width=100%;">
+					<p:row>
+						<p:column colspan="2">Usuário Logado: #{mbLogin.funcionario.login}</p:column>
+						<p:column colspan="2"><p:commandLink value="Alterar Senha" action="#{mbLogin.changePassword}" ajax="false"/></p:column>
+						<p:column colspan="2"><p:commandLink value="Logout" action="#{mbLogin.logout}" ajax="false"/></p:column>
+					</p:row>
+				</p:panelGrid>
+				
 				<ui:include src="header.xhtml" />
 			</h:form>
 		</div>
 		<div id="body">
 			<h:form>
+				<h:panelGroup id="divMessages">
+					<div class="messages" style="text-align: center;">
+						<p:messages globalOnly="true" />
+					</div>
+				</h:panelGroup>
+				
 				<ui:insert name="body" />
+				
 			</h:form>
 		</div>
 		<div id="footer">

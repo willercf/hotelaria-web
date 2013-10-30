@@ -2,15 +2,15 @@ package br.fpu.tcc.hotelaria.web;
 
 public class BundleConstants {
 
-	public static final String FORUMULARIO_SENHAS_INCONFORMIDADE = "formulario.senhas.inconformidade";
+	public static final String FORMULARIO_SENHAS_INCONFORMIDADE = "formulario.senhas.inconformidade";
 
-	public static final String FORMULARIO_QUARTO_REQUERIDO = "forumulario.quarto.required";
+	public static final String FORMULARIO_QUARTO_REQUERIDO = "formulario.quarto.required";
 
-	public static final String FORMULARIO_QUARTO_POSSUI_RESERVA = "forumulario.quarto.hasReservation";
+	public static final String FORMULARIO_QUARTO_POSSUI_RESERVA = "formulario.quarto.hasReservation";
 
-	public static final String FORMULARIO_PESQUISA_ERRO = "forumulario.pesquisa.erro";
+	public static final String FORMULARIO_PESQUISA_ERRO = "formulario.pesquisa.erro";
 
-	public static final String FORMULARIO_EDICAO_ERRO = "forumulario.edicao.erro";
+	public static final String FORMULARIO_EDICAO_ERRO = "formulario.edicao.erro";
 
 	public static final String FUNCIONARIO_CADASTRO_SUCESSO = "funcionario.cadastro.sucesso";
 
@@ -40,4 +40,9 @@ public class BundleConstants {
 
 	public static final String FORMULARIO_MASK_CNPJ = "formulario.mask.cnpj";
 
+	public static final String FORMULARIO_LOGIN_DOESNT_MATCH = "formulario.login.doesntMatch";
+
+	public static final String FORMULARIO_LOGIN_NOT_AUTHENTICATED = "formulario.login.notAuthenticated";
+
+	public static final String FORMULARIO_LOGIN_ERRO = "formulario.login.erro";
 }

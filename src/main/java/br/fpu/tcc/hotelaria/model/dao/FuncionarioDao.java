@@ -7,4 +7,6 @@ import br.fpu.tcc.hotelaria.pojo.Funcionario;
 public interface FuncionarioDao extends IBaseDao<Funcionario, Long> {
 
 	void changeStatus(Funcionario funcionario) throws PersistenceException;
+
+	Funcionario authenticate(String login, String senha);
 }

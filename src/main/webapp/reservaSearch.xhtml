@@ -10,9 +10,6 @@
 
 	<ui:composition template="/main.xhtml">
 		<ui:define name="body">
-			<div class="messages" style="text-align: center;">
-				<p:messages globalOnly="true" />
-			</div>
 
 			<p:panelGrid >
 				<f:facet name="header">
@@ -33,8 +30,8 @@
 							converter="clienteConverter" forceSelection="true"
 							maxlength="60" size="50" />
 					</p:column>
-					<p:column>Data Início: <p:calendar id="txtDataInicio" value="#{mbReservaSearch.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataInicio.required']}" /> <h:message for="txtDataInicio" /></p:column>
-					<p:column>Data Fim: <p:calendar id="txtDataFim" value="#{mbReservaSearch.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['forumulario.dataFim.required']}" /> <h:message for="txtDataFim" /></p:column>
+					<p:column>Data Início: <p:calendar id="txtDataInicio" value="#{mbReservaSearch.reserva.dataInicio}" showOn="button" required="true" requiredMessage="#{msg['formulario.dataInicio.required']}" /> <h:message for="txtDataInicio" /></p:column>
+					<p:column>Data Fim: <p:calendar id="txtDataFim" value="#{mbReservaSearch.reserva.dataFim}" showOn="button" required="true" requiredMessage="#{msg['formulario.dataFim.required']}" /> <h:message for="txtDataFim" /></p:column>
 				</p:row>
 				<p:row>
 					<p:column colspan="6" style="text-align: center;">Quarto</p:column>

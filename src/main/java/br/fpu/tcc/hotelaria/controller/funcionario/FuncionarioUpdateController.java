@@ -74,4 +74,8 @@ public class FuncionarioUpdateController extends BaseController {
 
 		return null;
 	}
+
+	public void changePassword() {
+
+	}
 }
