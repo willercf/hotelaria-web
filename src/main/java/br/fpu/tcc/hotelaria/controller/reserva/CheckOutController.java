@@ -35,7 +35,7 @@ public class CheckOutController extends ReservaAbstractController {
 	public void registerCheckOut() {
 
 		try {
-			reservaBo.registerCheckOut(reserva);
+			reservaBo.registerCheckOut(reserva, super.getAuthenticatedFuncionario());
 			super.addGlobalMessage(BundleConstants.CHECK_OUT_CADASTRO_SUCESSO);
 			search();
 		} catch (BoException e) {

@@ -2,7 +2,6 @@ package br.fpu.tcc.hotelaria.controller.reserva;
 
 import br.fpu.tcc.hotelaria.enums.StatusReserva;
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
-import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
 import br.fpu.tcc.hotelaria.web.QueryStringConstants;
 
@@ -40,6 +39,11 @@ public class ReservaUpdateController extends ReservaAbstractController {
 					throw new BoException("Reserva não encontrada.");
 				}
 
+				if (reserva.getStatusReserva().equals(StatusReserva.CHECK_IN)
+						|| reserva.getStatusReserva().equals(StatusReserva.CHECK_OUT)) {
+					throw new BoException("Reserva não pode ser editada.", BundleConstants.RESERVA_EDICAO_ERRO);
+				}
+
 				quartos.add(reserva.getQuarto());
 
 				hasNoError = true;
@@ -53,7 +57,7 @@ public class ReservaUpdateController extends ReservaAbstractController {
 	public String update() {
 
 		try {
-			reserva.setFuncionario(getAuthenticatedFuncionario());
+			reserva.setFuncionario(super.getAuthenticatedFuncionario());
 			if (isCancelReserva()) {
 				reserva.setStatusReserva(StatusReserva.CANCELED);
 			}
@@ -67,9 +71,4 @@ public class ReservaUpdateController extends ReservaAbstractController {
 		return null;
 	}
 
-	private Funcionario getAuthenticatedFuncionario() {
-
-		// TODO Refatorar para obter funcionário da sessão
-		return new Funcionario(1L);
-	}
 }

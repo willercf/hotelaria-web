@@ -3,7 +3,6 @@ package br.fpu.tcc.hotelaria.controller.reserva;
 import java.util.ArrayList;
 
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
-import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.pojo.Quarto;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
@@ -26,7 +25,7 @@ public class ReservaCreateController extends ReservaAbstractController {
 	public void save() {
 		Long id;
 		try {
-			reserva.setFuncionario(getAuthenticatedFuncionario());
+			reserva.setFuncionario(super.getAuthenticatedFuncionario());
 			id = reservaBo.save(reserva);
 			System.out.println("id: " + id);
 			reserva = new Reserva();
@@ -36,9 +35,4 @@ public class ReservaCreateController extends ReservaAbstractController {
 		}
 	}
 
-	private Funcionario getAuthenticatedFuncionario() {
-
-		// TODO Refatorar para obter funcionário da sessão
-		return new Funcionario(1L);
-	}
 }

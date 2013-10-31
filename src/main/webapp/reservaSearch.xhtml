@@ -127,7 +127,7 @@
     			</p:column>
     			
     			<p:column>
-    				<p:commandLink value="Detalhar" oncomplete="detailDialog.show()" disabled="#{entity.disableDetail}" ajax="true" update=":mainForm:detailDialog" immediate="true">
+    				<p:commandLink value="Detalhar" oncomplete="detailDialog.show()" ajax="true" update=":mainForm:detailDialog" immediate="true">
     					<f:setPropertyActionListener value="#{entity}" target="#{mbReservaSearch.reserva}" />
     				</p:commandLink>
     			</p:column>
@@ -137,6 +137,14 @@
 			<p:dialog id="detailDialog" header="Detalhes" widgetVar="detailDialog" modal="true" appendToBody="true"
 				resizable="false" draggable="false">
 				<p:panelGrid>
+					<p:row>
+						<p:column>
+							Funcionário Responsável: 
+						</p:column>
+						<p:column>
+							<h:outputText value="#{mbReservaSearch.reserva.funcionario.nome}" rendered="#{mbReservaSearch.reserva.funcionario != null}" />
+						</p:column>
+					</p:row>
 					<p:row>
 						<p:column>
 							Check-In: 

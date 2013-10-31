@@ -35,7 +35,7 @@ public class CheckInController extends ReservaAbstractController {
 	public void registerCheckIn() {
 
 		try {
-			reservaBo.registerCheckIn(reserva);
+			reservaBo.registerCheckIn(reserva, super.getAuthenticatedFuncionario());
 			super.addGlobalMessage(BundleConstants.CHECK_IN_CADASTRO_SUCESSO);
 			search();
 		} catch (BoException e) {

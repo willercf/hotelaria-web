@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
+import br.fpu.tcc.hotelaria.pojo.Funcionario;
 
 public abstract class BaseController implements Serializable {
 
@@ -74,5 +75,13 @@ public abstract class BaseController implements Serializable {
 	protected void putFlashMessage(String keyMessage) {
 
 		getCurrentcontext().getExternalContext().getFlash().put("rmsg", bundle.getString(keyMessage));
+	}
+
+	protected Funcionario getAuthenticatedFuncionario() {
+
+		FacesContext context = getCurrentcontext();
+		LoginController lc = (LoginController) context.getApplication().evaluateExpressionGet(context, "#{mbLogin}",
+				LoginController.class);
+		return lc.getFuncionario();
 	}
 }

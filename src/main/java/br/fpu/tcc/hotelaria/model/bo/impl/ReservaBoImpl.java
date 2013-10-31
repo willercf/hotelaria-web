@@ -15,6 +15,7 @@ import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
 import br.fpu.tcc.hotelaria.pojo.CheckIn;
 import br.fpu.tcc.hotelaria.pojo.CheckOut;
+import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.pojo.Reserva;
 import br.fpu.tcc.hotelaria.utils.DateUtil;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
@@ -107,12 +108,13 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements ReservaB
 		return reservaDao.findForCheckOut(entity);
 	}
 
-	public void registerCheckIn(Reserva entity) throws BoException {
+	public void registerCheckIn(Reserva entity, Funcionario funcionario) throws BoException {
 
 		try {
 
 			entity = findByPrimarykey(entity.getId());
 			entity.setStatusReserva(StatusReserva.CHECK_IN);
+			entity.setFuncionario(funcionario);
 
 			CheckIn checkIn = new CheckIn();
 			checkIn.setReserva(entity);
@@ -126,12 +128,13 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements ReservaB
 
 	}
 
-	public void registerCheckOut(Reserva entity) throws BoException {
+	public void registerCheckOut(Reserva entity, Funcionario funcionario) throws BoException {
 
 		try {
 
 			entity = findByPrimarykey(entity.getId());
 			entity.setStatusReserva(StatusReserva.CHECK_OUT);
+			entity.setFuncionario(funcionario);
 
 			CheckOut checkOut = new CheckOut();
 			checkOut.setReserva(entity);
