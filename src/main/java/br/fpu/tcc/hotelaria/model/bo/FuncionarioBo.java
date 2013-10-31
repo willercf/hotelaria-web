@@ -8,4 +8,7 @@ public interface FuncionarioBo extends IBaseBo<Funcionario, Long> {
 	void changeStatus(Funcionario funcionario) throws BoException;
 
 	Funcionario authenticate(String login, String senha) throws BoException;
+
+	void changePassword(Funcionario funcionario, String senhaAntiga,
+			String senha, String confirmacaoSenha) throws BoException;
 }

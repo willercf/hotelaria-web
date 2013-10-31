@@ -75,4 +75,11 @@ public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements 
 		return funcionario;
 	}
 
+	public void changePassword(Funcionario funcionario, String senhaAntiga,
+			String senha, String confirmacaoSenha) throws BoException {
+
+		
+	}
+
+	
 }

@@ -24,6 +24,10 @@ public class LoginController extends BaseController {
 
 	private String senha;
 
+	private String senhaAntiga;
+
+	private String confirmacaoSenha;
+
 	private Funcionario funcionario;
 
 	public FuncionarioBo getFuncionarioBo() {
@@ -50,6 +54,22 @@ public class LoginController extends BaseController {
 		this.senha = senha;
 	}
 
+	public String getSenhaAntiga() {
+		return senhaAntiga;
+	}
+
+	public void setSenhaAntiga(String senhaAntiga) {
+		this.senhaAntiga = senhaAntiga;
+	}
+
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -57,11 +77,13 @@ public class LoginController extends BaseController {
 	public String authenticate() {
 
 		try {
-			funcionario = funcionarioBo.authenticate(login, CipherUtil.encryptMd5(senha));
+			funcionario = funcionarioBo.authenticate(login,
+					CipherUtil.encryptMd5(senha));
 		} catch (BoException e) {
 			super.treatErrorMessage(e, BundleConstants.FORMULARIO_LOGIN_ERRO);
 		} catch (NoSuchAlgorithmException e) {
-			super.addGlobalMessage("Senha inválida", FacesMessage.SEVERITY_FATAL);
+			super.addGlobalMessage("Senha inválida",
+					FacesMessage.SEVERITY_FATAL);
 		}
 
 		if (funcionario == null) {
@@ -77,19 +99,26 @@ public class LoginController extends BaseController {
 	public void verifyAuthentication() {
 
 		if (funcionario == null) {
-			super.addGlobalMessage(BundleConstants.FORMULARIO_LOGIN_NOT_AUTHENTICATED, FacesMessage.SEVERITY_ERROR);
+			super.addGlobalMessage(
+					BundleConstants.FORMULARIO_LOGIN_NOT_AUTHENTICATED,
+					FacesMessage.SEVERITY_ERROR);
 			super.redirect("/login.xhtml?faces-redirect=true");
 		}
 	}
 
 	public String logout() {
-		HttpSession session = (HttpSession) super.getCurrentcontext().getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) super.getCurrentcontext()
+				.getExternalContext().getSession(false);
 		session.invalidate();
 		return "/login.xhtml?faces-redirect=true";
 	}
 
-	public String changePassword() {
+	public String showChangePassword() {
 
 		return "/alterarSenha.xhtml?faces-redirect=true";
+	}
+
+	public void changePassword() {
+
 	}
 }
