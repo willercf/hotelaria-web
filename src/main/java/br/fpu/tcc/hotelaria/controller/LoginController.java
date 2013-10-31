@@ -77,13 +77,11 @@ public class LoginController extends BaseController {
 	public String authenticate() {
 
 		try {
-			funcionario = funcionarioBo.authenticate(login,
-					CipherUtil.encryptMd5(senha));
+			funcionario = funcionarioBo.authenticate(login, CipherUtil.encryptMd5(senha));
 		} catch (BoException e) {
 			super.treatErrorMessage(e, BundleConstants.FORMULARIO_LOGIN_ERRO);
 		} catch (NoSuchAlgorithmException e) {
-			super.addGlobalMessage("Senha inválida",
-					FacesMessage.SEVERITY_FATAL);
+			super.addGlobalMessage("Senha inválida", FacesMessage.SEVERITY_FATAL);
 		}
 
 		if (funcionario == null) {
@@ -99,16 +97,13 @@ public class LoginController extends BaseController {
 	public void verifyAuthentication() {
 
 		if (funcionario == null) {
-			super.addGlobalMessage(
-					BundleConstants.FORMULARIO_LOGIN_NOT_AUTHENTICATED,
-					FacesMessage.SEVERITY_ERROR);
+			super.addGlobalMessage(BundleConstants.FORMULARIO_LOGIN_NOT_AUTHENTICATED, FacesMessage.SEVERITY_ERROR);
 			super.redirect("/login.xhtml?faces-redirect=true");
 		}
 	}
 
 	public String logout() {
-		HttpSession session = (HttpSession) super.getCurrentcontext()
-				.getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) super.getCurrentcontext().getExternalContext().getSession(false);
 		session.invalidate();
 		return "/login.xhtml?faces-redirect=true";
 	}
@@ -120,5 +115,12 @@ public class LoginController extends BaseController {
 
 	public void changePassword() {
 
+		try {
+
+			funcionarioBo.changePassword(funcionario, senhaAntiga, senha, confirmacaoSenha);
+			super.addGlobalMessage(BundleConstants.LOGIN_ALTERAR_SENHA_SUCESSO);
+		} catch (BoException e) {
+			super.treatErrorMessage(e, BundleConstants.LOGIN_ALTERAR_SENHA_ERRO);
+		}
 	}
 }

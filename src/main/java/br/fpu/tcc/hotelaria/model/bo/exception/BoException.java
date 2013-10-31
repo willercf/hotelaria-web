@@ -25,6 +25,11 @@ public class BoException extends Exception {
 		super(cause);
 	}
 
+	public BoException(Throwable cause, String keyMesage) {
+		super(cause);
+		this.keyMessage = keyMesage;
+	}
+
 	public BoException(String message, Throwable cause) {
 		super(message, cause);
 	}

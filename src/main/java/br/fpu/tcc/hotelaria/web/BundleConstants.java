@@ -45,4 +45,12 @@ public class BundleConstants {
 	public static final String FORMULARIO_LOGIN_NOT_AUTHENTICATED = "formulario.login.notAuthenticated";
 
 	public static final String FORMULARIO_LOGIN_ERRO = "formulario.login.erro";
+
+	public static final String LOGIN_ALTERAR_SENHA_SUCESSO = "login.alterarSenha.sucesso";
+
+	public static final String LOGIN_ALTERAR_SENHA_ERRO = "login.alterarSenha.erro";
+
+	public static final String LOGIN_ALTERAR_SENHA_ENCRYPT_ERRO = "login.alterarSenha.encrypt.erro";
+
+	public static final String LOGIN_ALTERAR_SENHA_ANTIGA_ERRO = "login.alterarSenha.senhaAntiga.erro";
 }

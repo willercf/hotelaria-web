@@ -14,6 +14,7 @@ import br.fpu.tcc.hotelaria.model.bo.exception.BoException;
 import br.fpu.tcc.hotelaria.model.bo.exception.PasswordDoesntMatchException;
 import br.fpu.tcc.hotelaria.model.dao.FuncionarioDao;
 import br.fpu.tcc.hotelaria.persistence.IBaseDao;
+import br.fpu.tcc.hotelaria.persistence.exception.PersistenceException;
 import br.fpu.tcc.hotelaria.pojo.Funcionario;
 import br.fpu.tcc.hotelaria.utils.CipherUtil;
 import br.fpu.tcc.hotelaria.web.BundleConstants;
@@ -75,11 +76,31 @@ public class FuncionarioBoImpl extends AbstractBo<Funcionario, Long> implements 
 		return funcionario;
 	}
 
-	public void changePassword(Funcionario funcionario, String senhaAntiga,
-			String senha, String confirmacaoSenha) throws BoException {
+	public void changePassword(Funcionario funcionario, String senhaAntiga, String senha, String confirmacaoSenha)
+			throws BoException {
 
-		
+		try {
+			senhaAntiga = CipherUtil.encryptMd5(senhaAntiga);
+
+			if (!StringUtils.equals(funcionario.getSenha(), senhaAntiga)) {
+				throw new PasswordDoesntMatchException("Old password doesn't match...",
+						BundleConstants.LOGIN_ALTERAR_SENHA_ANTIGA_ERRO);
+			}
+
+			if (!StringUtils.equals(senha, confirmacaoSenha)) {
+				throw new PasswordDoesntMatchException("Password doesn't match...",
+						BundleConstants.FORMULARIO_SENHAS_INCONFORMIDADE);
+			}
+
+			funcionario.setSenha(CipherUtil.encryptMd5(senha));
+
+			funcionarioDao.update(funcionario);
+		} catch (NoSuchAlgorithmException e) {
+			throw new BoException(e, BundleConstants.LOGIN_ALTERAR_SENHA_ENCRYPT_ERRO);
+		} catch (PersistenceException e) {
+			throw new BoException(e);
+		}
+
 	}
 
-	
 }
