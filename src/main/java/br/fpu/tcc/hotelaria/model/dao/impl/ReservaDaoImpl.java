@@ -34,6 +34,8 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements Reserv
 		criteria.createAlias("quarto", "q", Criteria.INNER_JOIN);
 		criteria.createAlias("cliente", "c", Criteria.INNER_JOIN);
 		criteria.createAlias("funcionario", "f", Criteria.INNER_JOIN);
+		criteria.createAlias("checkIn", "ci", Criteria.LEFT_JOIN);
+		criteria.createAlias("checkOut", "co", Criteria.LEFT_JOIN);
 
 		if (entity != null) {
 			criteria.add(Restrictions.ge("dataInicio", entity.getDataInicio()));

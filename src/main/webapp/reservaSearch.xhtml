@@ -125,9 +125,42 @@
     					<f:setPropertyActionListener value="#{entity}" target="#{mbReservaSearch.reserva}" />
     				</p:commandLink>
     			</p:column>
+    			
+    			<p:column>
+    				<p:commandLink value="Detalhar" oncomplete="detailDialog.show()" disabled="#{entity.disableDetail}" ajax="true" update=":mainForm:detailDialog" immediate="true">
+    					<f:setPropertyActionListener value="#{entity}" target="#{mbReservaSearch.reserva}" />
+    				</p:commandLink>
+    			</p:column>
 
 			</p:dataTable>
+			
+			<p:dialog id="detailDialog" header="Detalhes" widgetVar="detailDialog" modal="true" appendToBody="true"
+				resizable="false" draggable="false">
+				<p:panelGrid>
+					<p:row>
+						<p:column>
+							Check-In: 
+						</p:column>
+						<p:column>
+							<h:outputText value="#{mbReservaSearch.reserva.checkIn.dataEntrada}" rendered="#{mbReservaSearch.reserva.checkIn != null}">
+			  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			  				</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							Check-Out: 
+						</p:column>
+						<p:column>
+							<h:outputText value="#{mbReservaSearch.reserva.checkOut.dataSaida}" rendered="#{mbReservaSearch.reserva.checkOut != null}">
+			  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			  				</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:dialog>
+			
 		</ui:define>
 	</ui:composition>
-
+	
 </html>

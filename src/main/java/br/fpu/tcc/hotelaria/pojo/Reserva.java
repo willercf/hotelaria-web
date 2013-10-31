@@ -138,6 +138,11 @@ public class Reserva implements Serializable {
 		return !StatusReserva.RESERVED.equals(statusReserva);
 	}
 
+	@Transient
+	public boolean isDisableDetail() {
+		return !StatusReserva.CHECK_IN.equals(statusReserva) && !StatusReserva.CHECK_OUT.equals(statusReserva);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
