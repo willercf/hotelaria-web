@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import br.fpu.tcc.hotelaria.enums.StatusFuncionario;
 import br.fpu.tcc.hotelaria.model.dao.FuncionarioDao;
 import br.fpu.tcc.hotelaria.persistence.AbstractDao;
 import br.fpu.tcc.hotelaria.persistence.exception.PersistenceException;
@@ -22,6 +23,7 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implement
 		Criteria criteria = getSession().createCriteria(getPersistentClass());
 		criteria.add(Restrictions.eq("login", login));
 		criteria.add(Restrictions.eq("senha", senha));
+		criteria.add(Restrictions.eq("status", StatusFuncionario.ACTIVE));
 
 		Funcionario funcionario = (Funcionario) criteria.uniqueResult();
 		return funcionario;
