@@ -39,8 +39,7 @@ public class ReservaUpdateController extends ReservaAbstractController {
 					throw new BoException("Reserva não encontrada.");
 				}
 
-				if (reserva.getStatusReserva().equals(StatusReserva.CHECK_IN)
-						|| reserva.getStatusReserva().equals(StatusReserva.CHECK_OUT)) {
+				if (!reserva.getStatusReserva().equals(StatusReserva.RESERVED)) {
 					throw new BoException("Reserva não pode ser editada.", BundleConstants.RESERVA_EDICAO_ERRO);
 				}
 

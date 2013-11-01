@@ -82,6 +82,8 @@ public class LoginController extends BaseController {
 			super.treatErrorMessage(e, BundleConstants.FORMULARIO_LOGIN_ERRO);
 		} catch (NoSuchAlgorithmException e) {
 			super.addGlobalMessage("Senha inválida", FacesMessage.SEVERITY_FATAL);
+		} catch (Exception e) {
+			super.addGlobalMessage(BundleConstants.FORMULARIO_LOGIN_ERRO, FacesMessage.SEVERITY_FATAL);
 		}
 
 		if (funcionario == null) {
