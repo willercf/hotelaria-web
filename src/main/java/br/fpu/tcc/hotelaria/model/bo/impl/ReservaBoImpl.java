@@ -91,6 +91,10 @@ public class ReservaBoImpl extends AbstractBo<Reserva, Long> implements ReservaB
 			throw new BoException("Quarto is null", BundleConstants.FORMULARIO_QUARTO_REQUERIDO);
 		}
 
+		if (entity.getDataFim().compareTo(entity.getDataInicio()) <= 0) {
+			throw new BoException("Invlid Period", BundleConstants.FORMULARIO_PERIODO_ERRO);
+		}
+
 		if (reservaDao.existsRestriction(entity)) {
 			throw new BoException("Quarto already has reservation", BundleConstants.FORMULARIO_QUARTO_POSSUI_RESERVA);
 		}

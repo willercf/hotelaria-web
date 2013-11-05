@@ -12,6 +12,8 @@ public class BundleConstants {
 
 	public static final String FORMULARIO_EDICAO_ERRO = "formulario.edicao.erro";
 
+	public static final String FORMULARIO_PERIODO_ERRO = "formulario.periodo.erro";
+
 	public static final String FUNCIONARIO_CADASTRO_SUCESSO = "funcionario.cadastro.sucesso";
 
 	public static final String FUNCIONARIO_CADASTRO_ERRO = "funcionario.cadastro.erro";

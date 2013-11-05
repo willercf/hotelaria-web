@@ -9,6 +9,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StandardBasicTypes;
 
 import br.fpu.tcc.hotelaria.enums.StatusReserva;
 import br.fpu.tcc.hotelaria.model.dao.ReservaDao;
@@ -71,14 +72,26 @@ public class ReservaDaoImpl extends AbstractDao<Reserva, Long> implements Reserv
 		criteria.setProjection(Projections.rowCount());
 		criteria.add(Restrictions.eq("quarto", entity.getQuarto()));
 
-		Criterion initRange = Restrictions.between("dataInicio", entity.getDataInicio(), entity.getDataFim());
-		Criterion endRange = Restrictions.between("dataFim", entity.getDataInicio(), entity.getDataFim());
+		// Criterion initRange = Restrictions.between("dataInicio",
+		// entity.getDataInicio(), entity.getDataFim());
+		// Criterion endRange = Restrictions.between("dataFim",
+		// entity.getDataInicio(), entity.getDataFim());
+		// Criterion condition =
+		// Restrictions.disjunction().add(initRange).add(endRange);
+
+		Criterion initRange = Restrictions.sqlRestriction("? between {alias}.data_inicio and {alias}.data_fim",
+				entity.getDataInicio(), StandardBasicTypes.DATE);
+		Criterion endRange = Restrictions.sqlRestriction("? between {alias}.data_inicio and {alias}.data_fim", entity.getDataFim(),
+				StandardBasicTypes.DATE);
 		Criterion condition = Restrictions.disjunction().add(initRange).add(endRange);
 		criteria.add(condition);
 
 		if (entity.getId() != null) {
 			criteria.add(Restrictions.not(Restrictions.eq("id", entity.getId())));
 		}
+
+		StatusReserva[] status = { StatusReserva.RESERVED, StatusReserva.CHECK_IN };
+		criteria.add(Restrictions.in("statusReserva", status));
 
 		Long quantity = (Long) criteria.uniqueResult();
 		return quantity > 0;
